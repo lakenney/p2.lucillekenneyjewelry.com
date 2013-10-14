@@ -5,7 +5,7 @@ class practice_controller extends base_controller {
 	public function test1() {
 	
 	// Make sure code has access to my image class
-	require(APP_PATH.'/libraries/Image.php');
+	#require(APP_PATH.'/libraries/Image.php');
 	
 	#echo "You are looking at test1.";
 	
