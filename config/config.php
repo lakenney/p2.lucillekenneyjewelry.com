@@ -28,10 +28,10 @@ A email designated to receive messages from the server. Examples:
  	
  	Some might want this to be the same as the APP_EMAIL, others might want to create a designated gmail address for it
 */ 	
-	define('SYSTEM_EMAIL', 'webmaster@myapp.com'); 
+	define('SYSTEM_EMAIL', 'webmaster@lucillekenneyjewelry.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', "p2_lucillekenneyjewelry_com"); 
+	define('DB_NAME', "lucillek_p2_lucillekenneyjewelry_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
