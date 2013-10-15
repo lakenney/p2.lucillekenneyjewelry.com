@@ -45,14 +45,11 @@ class users_controller extends base_controller {
     	echo 'You\'re signed up';          
     }
 
-    public function login($error = NULL) {
+    public function login() {
     
         // Setup view
         	$this->template->content = View::instance('v_users_login');
         	$this->template->title   = "Login";
-        	
-    	// Pass data to the view
-    		$this->template->content->error = $error;
 
     	// Render template
         	echo $this->template;
@@ -80,7 +77,7 @@ class users_controller extends base_controller {
     	if(!$token) {
 
         	// Send them back to the login page
-        	Router::redirect("/users/login/error");
+        	Router::redirect("/users/login/");
         
         // But if we did, login succeeded! 
     	} else {
@@ -94,7 +91,7 @@ class users_controller extends base_controller {
         	param 3 = when to expire
         	param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
         	*/
-        	setcookie("token", $token, strtotime('+2 weeks'), '/');
+        	setcookie("token", $token, strtotime('+1 year'), '/');
 
         	// Send them to the main page - or whever you want them to go
         	// This is the index page ... maybe send them to posts.php
@@ -139,39 +136,29 @@ class users_controller extends base_controller {
     	}
 
     	// If they weren't redirected away, continue:
-    	
-    	/*
-    	If you look at _v_template you'll see it prints a $content variable in the <body>
-    	Knowing that, let's pass our v_users_profile.php view fragment to $content so 
-    	it's printed in the <body>
-    	*/
 
     	// Pass our view fragment to the master template content
     	// Set up the View (see Cheat Sheet)
     	$this->template->content = View::instance('v_users_profile');
-    	// Set page title
     	$this->template->title = "Profile of".$this->user->first_name;
     	
-    	// Create an array for all the client files
     	// Method inside the utilities library to help with this
     	$client_files_head = Array(
-        	'/css/master.css',
-        	'/css/profile.css'
-        );
+    		'/css/profile.css',
+    		'/css/reset.css',  
+    		'/css/master.css'
+    		);
     	
-		// Use load_client_files to generate the links from the above array
-    	$this->template->client_files_head = Utils::load_client_files($client_files_head);    
-        
-    	// Create an array of 1 or many client files to be included before the closing </body> tag
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head);
+    
+        // Method inside the utilities library to help with this
     	$client_files_body = Array(
-        	'/js/widgets.min.js',
-        	'/js/profile.min.js'
-        );
+    		'/js/profile.js', 
+    		);
     	
-    	// Use load_client_files to generate the links from the above array
-    	$this->template->client_files_body = Utils::load_client_files($client_files_body);      
-    	
-    	// Pass information to the view fragment
+    	$this->template->client_files_body = Utils::load_client_files($client_files_body);
+    
+    	// Pass the data to the view
     	$this->template->content->user_name = $user_name;
     	
     	// Or
