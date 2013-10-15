@@ -10,26 +10,29 @@ class posts_controller extends base_controller {
         echo "This is the index page";
     }
 
-    public function new() {
-        echo "This is the new post page";
-    }
+    #public function new() {
+        #echo "This is the signup page";
+    #}
 
     public function edit() {
         echo "This is the edit post page";
     }
 
-    public function delete() {
+    #public function delete() {
+        #echo "This is the delete post page";
+    #}
+    
+    public function search() {
         echo "This is the delete post page";
     }
+    #public function profile($user_name = NULL) {
 
-    public function profile($user_name = NULL) {
-
-        if($user_name == NULL) {
-            echo "No user specified";
-        }
-        else {
-            echo "This is the profile for ".$user_name;
-        }
-    }
+       #if($user_name == NULL) {
+            #echo "No user specified";
+        #}
+        #else {
+            #echo "This is the profile for ".$user_name;
+        #}
+    #}
 
 } # end of the class
