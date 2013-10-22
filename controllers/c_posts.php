@@ -3,7 +3,7 @@ class posts_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
-        echo "posts_controller construct called<br><br>";
+        #echo "posts_controller construct called<br><br>";
     } 
 
     public function index() {
@@ -43,7 +43,6 @@ class posts_controller extends base_controller {
        	// Setup view
         $this->template->content = View::instance('v_posts_add');
         $this->template->title   = "Add A Post";
-        $this->template->body_id = 'add';
 
         // Render template
         echo $this->template;
@@ -73,7 +72,6 @@ class posts_controller extends base_controller {
 		
 		// Where do I want to redirect them
 		#Router::redirect('/posts/...);
-    
     }
     
     /*-------------------------------------------------------------------------------------------------

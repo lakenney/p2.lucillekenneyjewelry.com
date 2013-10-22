@@ -15,12 +15,18 @@
 	<!--<link rel="stylesheet" href="/css/master.css">-->
 	<link rel="stylesheet" href="/css/styles.css">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Navigation highlight css 'iamhere' -->
+	<script type="text/javascript" src="/js/highlightnavigation.js"> </script>
+	
+
+
 	<!-- Controller Specific JS/CSS -->
 	<!-- <?php if(isset($client_files_head)) echo $client_files_head; ?>-->
 	
 </head>
 
-<body id='<?php if(isset($body_id)) echo $body_id; ?>'>
+<body id='<?php if(isset($body_id)) echo "id='$body_id'" ?>'>
 
 	<div class="wrapper">
 	
@@ -42,27 +48,27 @@
     <nav id='primary_nav'>
 
 			<ul>
-        		<li id="navhome"><a href='/'>Home</a></li>
-        		<li id="products"><a href='/products'>Products</a></li>
-        		<li id="contact"><a href='/contact'>Contact</a></li>
+        		<li id="nav_home"><a href='/'>Home</a></li>
+        		<li id="nav_products/test"><a href='/products'>Products</a></li>
+        		<li id="nav_contact"><a href='/contact'>Contact</a></li>
         	</ul>
     </nav><!-- end primary_nav-->
         	<!-- Menu for users who are logged in -->
         	<?php if($user): ?>
-    <nav id='logged_in'>
+    <nav id='access'>
 			<ul >
-            	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
-            	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
-            	<li id="navadd"><a href='/posts/add'>Add Post</a></li>
+            	<li id="nav_logout"><a href='/users/logout'>Logout</a></li>
+            	<li id="nav_profile"><a href='/users/profile'>Profile</a></li>
+            	<li id="nav_add"><a href='/posts/add'>Add Post</a></li>
 				<li class="top"><a href="#home" title="...">Top</a></li>            	
             </ul>
     </nav><!-- end primary_nav-->
         	<!-- Menu options for users who are not logged in -->
         	<?php else: ?>
-    <nav id='logged_out'>
+    <nav id='access_out'>
         	<ul>
-            	<li id="signup"><a href='/users/signup'>Sign up</a></li>
-            	<li id="login"><a href='/users/login'>Log in</a></li>
+            	<li id="nav_signup"><a href='/users/signup'>Sign up</a></li>
+            	<li id="nav_login"><a href='/users/login'>Log in</a></li>
 				<li class="top"><a href="#home" title="...">Top</a></li>            
 			</ul>
     </nav><!-- end primary_nav-->
@@ -75,10 +81,6 @@
 	<article>
 	<!--<?php if(isset($client_files_body)) echo $client_files_body; ?>-->
 	</article>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!-- Navigation highlight css 'iamhere' -->
-	<script type="text/javascript" src="/js/highlightnavigation.js"> </script>
-	
 	</div><!--end wrapper-->
 </body>
 </html>

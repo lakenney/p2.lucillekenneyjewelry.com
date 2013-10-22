@@ -74,7 +74,7 @@ ul {
 }
 
 a {
-	color: #49afcc;
+	color: #666666;
 }
 
 h1 {
@@ -83,7 +83,7 @@ h1 {
 
 h2 {
 	font-family: 'PT Serif', serif;
-	font-size: 32px;
+	font-size: 18px;
 	line-height: 1.4em;
 	margin: 0 0 .4em;
 	font-weight: bold;
@@ -96,7 +96,7 @@ h2 {
 
 article {
 	border-bottom: 1px solid #d8d8d8;
-	padding: 10px 20px 0 20px;
+	padding: 30px 20px 0 20px;
 	margin: 10px 0;
 }
 
@@ -128,7 +128,7 @@ h1.logo a {
 	text-decoration: none;
 	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 22px;
 	float: left;
 	letter-spacing: 0.2em;
@@ -194,48 +194,37 @@ a.to_nav:focus {
 #primary_nav ul li#iamhere a:link,
 #primary_nav ul li#iamhere a:visited,
 #primary_nav ul li#iamhere a:hover { 	
-	color: #1b7887; 
+	color: red; 
 	background-color:transparent; 	
-	border-bottom: 1px solid #383838;
+	border-bottom: 10px solid #383838;
 }
 
-/*logged in navigation added to distinguish from primary nav*/	
-#logged_in {
-	background: #1c1c1c;
-	color:red;
-	
-}
-
-
-/* logged out navigation */
-			#logged_out {
-				position: absolute;
-				top: 55px;
-				right: 10px;
-				background: none;
-			}
-#logged_out ul {
+/*nav for access to login*/	
+#access {
+	position: absolute;
+	top: 55px;
+	right: 10px;
+	background: none;
+	}
+#access ul {
 	list-style: none;
-}
-			
-			#logged_out li {
-				display: inline;
-			}
-			
-			#logged_out li a {
-				float: left;
-				border: none;
-				padding: 0 10px;
-				-webkit-border-radius: 2px;
-				-moz-border-radius: 2px;
-				border-radius: 2px;
-			}
-			
-			#logged_out li.top {
-				display: none;
-			}
-			
-#logged_out li a {
+	line-height:52px;
+	margin-bottom:10px;	}
+#access li {
+	display: inline;
+	}
+#access li a {
+	float: left;
+	border: none;
+	padding: 0 10px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	}
+#access li.top {
+	display: none;
+	}
+#access li a {
 	display: block;
 	padding: 0 20px;
 	color: #red;
@@ -248,26 +237,55 @@ a.to_nav:focus {
 	height: 2em;
 	/*border-bottom: 1px solid #383838;*/
 }
-
-#logged_out li:last-child a {
+#access li:last-child a {
 	border-bottom: none;
 }
-
-#logged_out li a:hover,
-#logged_out li a:focus {
+#access li a:hover,
+#access li a:focus {
 	color: #1c1c1c;
 	background: #ccc;
 }
-			
-			
-	/*
-#logged_out ul {
-	list-style: none;
-	background: #1c1c1c;
-	padding: 5px 0;
+
+/* styles for the 'highlightnavigation.js file navigation active */
+#access ul li#iamhere a,
+#access ul li#iamhere a:link,
+#access ul li#iamhere a:visited,
+#access ul li#iamhere a:hover { 	
+	color: red; 
+	background-color:transparent; 	
+	border-bottom: 10px solid #383838;
+	background-color: orange;
 }
 
-#logged_out li a {
+.error {
+	color:red;
+}			
+/*nav for access to logout*/	
+#access_out {
+	position: absolute;
+	top: 55px;
+	right: 10px;
+	background: none;
+	}
+#access_out ul {
+	list-style: none;
+	line-height:52px;
+	margin-bottom:10px;	}
+#access_out li {
+	display: inline;
+	}
+#access_out li a {
+	float: left;
+	border: none;
+	padding: 0 10px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	}
+#access_out li.top {
+	display: none;
+	}
+#access_out li a {
 	display: block;
 	padding: 0 20px;
 	color: #red;
@@ -278,19 +296,28 @@ a.to_nav:focus {
 	letter-spacing: 0.1em;
 	line-height: 2em;
 	height: 2em;
-	border-bottom: 1px solid #383838;
+	/*border-bottom: 1px solid #383838;*/
 }
-
-#logged_out li:last-child a {
+#access_out li:last-child a {
 	border-bottom: none;
 }
-
-#logged_out li a:hover,
-#logged_out li a:focus {
+#access_out li a:hover,
+#access_out li a:focus {
 	color: #1c1c1c;
 	background: #ccc;
 }
-*/
+
+/* styles for the 'highlightnavigation.js file navigation active */
+#access_out ul li#iamhere a,
+#access_out ul li#iamhere a:link,
+#access_out ul li#iamhere a:visited,
+#access_out ul li#iamhere a:hover { 	
+	color: red; 
+	background-color:transparent; 	
+	border-bottom: 10px solid #383838;
+	background-color: orange;
+}
+
 /*footer*/
 
 footer {
@@ -299,6 +326,23 @@ footer {
 	text-align: center;
 	font-size: 14px;
 }
+
+		/*shorter clearfix http://nicolasgallagher.com/micro-clearfix-hack/*/
+		access:before,
+		access:after {
+		    content:"";
+		    display:table;
+		}
+		
+		access:after {
+		    clear:both;
+		}
+		
+		/* For IE 6/7 (trigger hasLayout) */
+		access {
+		    zoom:1;
+		}
+
 
 /*media queries*/
 
@@ -338,19 +382,19 @@ footer {
 				display: none;
 			}
 			
-			/* logged out navigation */
-			#logged_out {
+			/* access navigation */
+			#access {
 				position: absolute;
 				top: 55px;
 				right: 10px;
 				background: none;
 			}
 			
-			#logged_out li {
+			#access li {
 				display: inline;
 			}
 			
-			#logged_out li a {
+			#access li a {
 				float: left;
 				border: none;
 				padding: 0 10px;
@@ -359,7 +403,7 @@ footer {
 				border-radius: 2px;
 			}
 			
-			#logged_out li.top {
+			#access li.top {
 				display: none;
 			}
 	
