@@ -26,7 +26,7 @@
 	
 </head>
 
-<body id='<?php if(isset($body_id)) echo "id='$body_id'" ?>'>
+<body id='<?php if(isset($body_id)) echo $body_id; ?>'>
 
 	<div class="wrapper">
 	
@@ -46,20 +46,19 @@
 	</article>
 
     <nav id='primary_nav'>
-
 			<ul>
-        		<li id="nav_home"><a href='/'>Home</a></li>
-        		<li id="nav_products/test"><a href='/products'>Products</a></li>
-        		<li id="nav_contact"><a href='/contact'>Contact</a></li>
+        		<li id="navindex_index"><a href='/'>Home</a></li>
+        		<li id="navproducts"><a href='/products'>Products</a></li>
+        		<li id="navcontact"><a href='/contact'>Contact</a></li>
         	</ul>
     </nav><!-- end primary_nav-->
         	<!-- Menu for users who are logged in -->
         	<?php if($user): ?>
     <nav id='access'>
 			<ul >
-            	<li id="nav_logout"><a href='/users/logout'>Logout</a></li>
-            	<li id="nav_profile"><a href='/users/profile'>Profile</a></li>
-            	<li id="nav_add"><a href='/posts/add'>Add Post</a></li>
+            	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
+            	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
+            	<li id="navadd"><a href='/posts/add'>Add Post</a></li>
 				<li class="top"><a href="#home" title="...">Top</a></li>            	
             </ul>
     </nav><!-- end primary_nav-->
@@ -67,8 +66,8 @@
         	<?php else: ?>
     <nav id='access_out'>
         	<ul>
-            	<li id="nav_signup"><a href='/users/signup'>Sign up</a></li>
-            	<li id="nav_login"><a href='/users/login'>Log in</a></li>
+            	<li id="navsignup"><a href='/users/signup'>Sign up</a></li>
+            	<li id="navlogin"><a href='/users/login'>Log in</a></li>
 				<li class="top"><a href="#home" title="...">Top</a></li>            
 			</ul>
     </nav><!-- end primary_nav-->

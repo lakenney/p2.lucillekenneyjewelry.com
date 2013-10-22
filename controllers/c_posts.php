@@ -43,6 +43,7 @@ class posts_controller extends base_controller {
        	// Setup view
         $this->template->content = View::instance('v_posts_add');
         $this->template->title   = "Add A Post";
+        $this->template->body_id = 'add'; 
 
         // Render template
         echo $this->template;
@@ -68,7 +69,7 @@ class posts_controller extends base_controller {
 		#);
 		
 		// Insert this post into the database
-		$post_id = DB::instance(DB_NAME)->insert_row('posts',$_POST);
+		$post_id = DB::instance(DB_NAME)->insert('posts',$_POST);
 		
 		// Where do I want to redirect them
 		#Router::redirect('/posts/...);

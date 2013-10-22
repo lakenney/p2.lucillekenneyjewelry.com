@@ -28,6 +28,8 @@ class base_controller {
 		# Default the body_id to be controller + method name
 			$this->template->body_id = Router::$controller.'_'.Router::$method;
 			
+		# Default the body_id to be controller + method name
+			$this->template->li_id = Router::$controller.'_'.Router::$method;			
 	}
 	
 } # eoc

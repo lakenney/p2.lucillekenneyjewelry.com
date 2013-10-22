@@ -3,7 +3,7 @@ class products_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
-        echo "products_controller construct called<br><br>";
+        #echo "products_controller construct called<br><br>";
     } 
 
     public function index() {
@@ -17,7 +17,7 @@ class products_controller extends base_controller {
         # Setup view
         $this->template->content = View::instance('v_products_test');
         $this->template->title   = "Testing highlightnavigation.js";
-        $this->template->body_id = 'test';
+        $this->template->body_id = 'products';
 
         # Render template
         echo $this->template;

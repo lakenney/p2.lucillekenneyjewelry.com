@@ -194,9 +194,10 @@ a.to_nav:focus {
 #primary_nav ul li#iamhere a:link,
 #primary_nav ul li#iamhere a:visited,
 #primary_nav ul li#iamhere a:hover { 	
-	color: red; 
-	background-color:transparent; 	
-	border-bottom: 10px solid #383838;
+	color: #1c1c1c; 
+	background: #ccc;
+	/*background-color:transparent; 	
+	border-bottom: 10px solid #383838;*/
 }
 
 /*nav for access to login*/	

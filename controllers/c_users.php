@@ -49,7 +49,7 @@ class users_controller extends base_controller {
         # Setup view
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign Up";
-        $this->template->body_id = 'signup';
+        #$this->template->body_id = 'signup';
 
         # Render template
             echo $this->template;
@@ -113,7 +113,7 @@ class users_controller extends base_controller {
         // Setup view
         $this->template->content = View::instance('v_users_login');
         $this->template->title   = "Login";
-        #$this->template->body_id = 'login';
+        $this->template->body_id = 'login';
 
         	
     	// Pass data to the view
@@ -233,7 +233,7 @@ class users_controller extends base_controller {
     	// Pass information to the view fragment
     	$this->template->content->user_name = $user_name;
     	// Set the body id for the highlightnavigation.js
-    	#$this->template->body_id = 'profile'; 
+    	$this->template->body_id = 'profile'; 
     	
     	// Or
     	// In class suggestion of creating a variable to pass data
