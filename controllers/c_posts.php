@@ -17,13 +17,14 @@ class posts_controller extends base_controller {
     public function index() {
 
     	// Set up the View
-    	#$this->template->content = View::instance('v_posts_index');
+    	$this->template->content = View::instance('v_posts_index');
     	
-    	// I want posts listed with my add method
-    	$this->template->content = View::instance('v_posts_add');
+    	// I want followed posts listed under my add method
+    	#$this->template->content = View::instance('v_posts_add');
     	
     	$this->template->title   = "Posts";
 
+    	/* This is the entire steam of posts
     	// Build the query
     	$q = "SELECT 
             	posts .* , 
@@ -32,6 +33,23 @@ class posts_controller extends base_controller {
         	FROM posts
         	INNER JOIN users 
             	ON posts.user_id = users.user_id";
+        */
+        
+        // Build the follow query
+        
+        $q = 'SELECT 
+            posts.content,
+            posts.created,
+            posts.user_id AS post_user_id,
+            users_users.user_id AS follower_id,
+            users.first_name,
+            users.last_name
+        FROM posts
+        INNER JOIN users_users 
+            ON posts.user_id = users_users.user_id_followed
+        INNER JOIN users 
+            ON posts.user_id = users.user_id
+        WHERE users_users.user_id = '.$this->user->user_id;
 
     	// Run the query
     	$posts = DB::instance(DB_NAME)->select_rows($q);
@@ -74,12 +92,6 @@ class posts_controller extends base_controller {
         // Unix timestamp of when this post was created / modified
     	$_POST['created']  = Time::now();
     	$_POST['modified'] = Time::now();
-    	
-    	// Insert an array
-    	#$_POST = Array (
-		#	'comment' => "$_POST[comment]",
-			
-		#);
 		
 		// Insert
  		/* Note we didn't have to sanitize any of the $_POST data 
@@ -132,7 +144,7 @@ class posts_controller extends base_controller {
 
 
     /*-------------------------------------------------------------------------------------------------
-	USERS a setting for which users are seen
+	FOLLOW
 	-------------------------------------------------------------------------------------------------*/
 
 	public function follow($user_id_followed) {
@@ -151,6 +163,10 @@ class posts_controller extends base_controller {
     	Router::redirect("/posts/users");
 
 	}
+	
+    /*-------------------------------------------------------------------------------------------------
+	UNFOLLOW
+	-------------------------------------------------------------------------------------------------*/
 
 	public function unfollow($user_id_followed) {
 
@@ -162,8 +178,6 @@ class posts_controller extends base_controller {
     	Router::redirect("/posts/users");
 
 	}
-
-
 
     /*-------------------------------------------------------------------------------------------------
 	...
