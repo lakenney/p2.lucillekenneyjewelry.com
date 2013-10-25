@@ -28,6 +28,28 @@ class users_controller extends base_controller {
             
     }
     
+/**    // Helper function to validate field !empty
+    private function empty_field() {
+    
+    	if(!empty($_POST['first_name']))
+    		return false;
+    		echo "Fill in your first name."
+    	else{
+    		return false;
+    		echo "Fill in your last name."
+    	}
+    	else{
+    		return false;
+    		echo "Fill in your password." 
+    	
+    	}	
+  		else{
+    		// if all is well, we return TRUE
+    		return TRUE;
+    	}    	
+    	
+    }
+*/    
     // Helper function to determine duplicate email
     private function unique_email() {
     

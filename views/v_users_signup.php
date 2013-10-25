@@ -3,11 +3,29 @@
     First Name<br>
     <input type='text' name='first_name'>
     <br><br>
-
+    
+    <?php if(empty($error)): ?>
+        <div class='error'>
+            Fill in your first name.
+        </div>
+        
+        <br>
+        
+    <?php endif; ?>
+    
     Last Name<br>
     <input type='text' name='last_name'>
     <br><br>
-
+    
+    <?php if(empty($error)): ?>
+        <div class='error'>
+            Fill in your last name.
+        </div>
+        
+        <br>
+        
+    <?php endif; ?>
+    
     Email<br>
     <input type='text' name='email'>
     <br><br>
@@ -24,7 +42,17 @@
     Password<br>
     <input type='password' name='password'>
     <br><br>
-
+    
+    <?php if(empty($error)): ?>
+        <div class='error'>
+            Fill in your password name.
+        </div>
+        
+        <br>
+        
+    <?php endif; ?>
+    
     <input type='submit' value='Sign up'>
 
 </form>
+
