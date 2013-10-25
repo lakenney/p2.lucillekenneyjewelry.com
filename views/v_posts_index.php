@@ -8,6 +8,8 @@
 
 </form>
 
+<!-- view within a view -->
+
 <br> <br>
 
 <?php foreach($posts as $post): ?>

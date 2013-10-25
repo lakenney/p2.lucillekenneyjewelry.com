@@ -7,52 +7,49 @@ class users_controller extends base_controller {
     } 
 
     public function index() {
-    // Taken from repos 
-    # The DOC_ROOT and APP_PATH constant have to happen in the actual app
-
-	# Document root, ex: /path/to/home/app.com/../ (uses ./ on CLI)
-	define('DOC_ROOT', empty($_SERVER['DOCUMENT_ROOT']) ? './' : realpath($_SERVER['DOCUMENT_ROOT']).'/../');
-	  
-	# App path, ex: /path/to/home/app.com/
-	define('APP_PATH', realpath(dirname(__FILE__)).'/');
-         
-	# Environment
-	require_once DOC_ROOT.'environment.php'; 
-   
-	# Where is core located?
-	define('CORE_PATH',  $_SERVER['DOCUMENT_ROOT']."/../core/");
-	   
-	# Load app configs
-	require APP_PATH."/config/config.php";
-	require APP_PATH."/config/feature_flags.php";
-	  
-	# Bootstrap
-	require CORE_PATH."bootstrap.php";
-
-	# Routing
-    Router::$routes = array(
-    	'/' => '/index',     # default controller when "/" is requested
-    );
-    
-	# Match requested uri to any routes and instantiate controller
-    Router::init();
-    
-	# Display environment details
-	require CORE_PATH."environment-details.php";
     
     echo "This is the index page";
     
     }
+
+	/*-------------------------------------------------------------------------------------------------
+	SIGNUP
+	-------------------------------------------------------------------------------------------------*/
 
     public function signup() {
     
         # Setup view
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign Up";
-        #$this->template->body_id = 'signup';
+        $this->template->body_id = 'signup';
 
         # Render template
             echo $this->template;
+            
+    }
+    
+    // Helper function to determine duplicate email
+    private function unique_email() {
+    
+		//Make sure it's sanitized first
+		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
+    	
+    	// Search the db for this email
+    	$q = "SELECT COUNT(*) 
+        		FROM users 
+        		WHERE email  = '" .$_POST['email']. "'";
+        
+		// Run the query, echo what it returns	
+		$count = DB::instance(DB_NAME)->select_field($q);
+	        		
+		if($count > 0) {
+			// If there is a match $q will be greater than 0
+			return false;
+		}
+		else {
+			return true;
+		}
+    
     }
     
     public function p_signup() {
@@ -71,8 +68,31 @@ class users_controller extends base_controller {
     	
     	// This is how we will determine if the user is logged in
     	// Create an encrypted token via their email address and a random string
-    	$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());  
+    	$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+    	
+		// Using Helper function to check for duplicate emails
+    	$unique = $this->unique_email();
+    	
+    	if(!$unique) {
+    	// Setup view
+        $this->template->content = View::instance('v_users_signup');
+        #$this->template->title   = "Signup";
+        #$this->template->body_id = 'signup';
+
+    	// Pass data to the view
+    	$this->template->content->error = true;
+
+    	// Render template
+        echo $this->template;
+        #echo "This is the login page";
         
+    		// Send them back to the signup page
+        	// Signin failed ... maybe give 'forgot password' option to reset password.
+        	//echo "You already have an account";
+        	//Router::redirect("/users/signup/error");
+    	
+    	} else {
+    	
         // Insert this user into the database
     	$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
     	
@@ -85,8 +105,13 @@ class users_controller extends base_controller {
     	
     	// Send them to the login page
     	Router::redirect('/users/login');
+    	}
     	
     }
+
+	/*-------------------------------------------------------------------------------------------------
+	LOGIN
+	-------------------------------------------------------------------------------------------------*/
 
     public function login($error = NULL) {
     	
@@ -122,9 +147,7 @@ class users_controller extends base_controller {
     	// Render template
         echo $this->template;
         #echo "This is the login page";
-        
-        
-        	
+                	
     }
     
     public function p_login() {
@@ -177,6 +200,10 @@ class users_controller extends base_controller {
     	}
     	
     }
+    
+	/*-------------------------------------------------------------------------------------------------
+	LOGOUT
+	-------------------------------------------------------------------------------------------------*/
 
     public function logout() {
     
@@ -202,9 +229,12 @@ class users_controller extends base_controller {
     
         public function edit() {
     
-    
         echo "This is the edit user page";
     }
+    
+	/*-------------------------------------------------------------------------------------------------
+	PROFILE
+	-------------------------------------------------------------------------------------------------*/
     
     public function profile($user_name = NULL) {
     
