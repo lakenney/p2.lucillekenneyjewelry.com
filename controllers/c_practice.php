@@ -55,6 +55,54 @@ class practice_controller extends base_controller {
 	echo DB::instance(DB_NAME)->select_field($q);
 	
 	}
+	
+	/*-------------------------------------------------------------------------------------------------
+Demonstrating an alternative way to handle signup errors.
+In this method, we're submitting the signup form to itself.
+-------------------------------------------------------------------------------------------------*/
+public function signup() {
+	
+	# Set up view
+	$this->template->content = View::instance('v_practice_signup');
+	
+	# Innocent until proven guilty
+	$error = false;
+	
+	# Initiate error
+	$this->template->content->error = '<br>';
+	
+	# If we have no post data (i.e. the form was not yet submitted, just display the View with the signup form and be done
+	if(!$_POST) {
+		echo $this->template;
+		return;
+	}
+	
+	# Otherwise...
+	# Loop through the POST data
+	foreach($_POST as $field_name => $value) {
+		
+		# If a field was blank, add a message to the error View variable
+		if($value == "") {
+			$this->template->content->error .= $field_name.' is blank.<br>';
+			$error = true;
+		}
+	}	
+		
+	# Passed
+	if(!$error) {
+		echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+		/*
+		Code here to enter into DB
+		Code here to redirect them somewhere else
+		*/
+	}
+	else {
+		echo $this->template;
+	}
+ 
+}
+
+
 
 	
 	/*-------------------------------------------------------------------------------------------------
@@ -82,7 +130,6 @@ class practice_controller extends base_controller {
 
 	}
 	
-
   	public function test1(){
     	#require(APP_PATH.'/libraries/image.php');
     	#echo "testing!";

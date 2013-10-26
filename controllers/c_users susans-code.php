@@ -13,10 +13,10 @@ class users_controller extends base_controller {
     }
 
 	/*-------------------------------------------------------------------------------------------------
-	SIGNUP
+	SIGNUP (old signup before error check for empty fields
 	-------------------------------------------------------------------------------------------------*/
 
-    public function signup() {
+/**    public function signup() {
     
         # Setup view
         $this->template->content = View::instance('v_users_signup');
@@ -26,30 +26,71 @@ class users_controller extends base_controller {
         # Render template
             echo $this->template;
             
-    }
+    }*/
     
-/**    // Helper function to validate field !empty
-    private function empty_field() {
-    
-    	if(!empty($_POST['first_name']))
-    		return false;
-    		echo "Fill in your first name."
-    	else{
-    		return false;
-    		echo "Fill in your last name."
-    	}
-    	else{
-    		return false;
-    		echo "Fill in your password." 
+	/*-------------------------------------------------------------------------------------------------
+	Demonstrating an alternative way to handle signup errors.
+	In this method, we're submitting the signup form to itself.
+	See Susan's code https://gist.github.com/susanBuck/7022533
+	-------------------------------------------------------------------------------------------------*/
+	public function signup() {
+	
+		# Set up view
+		$this->template->content = View::instance('v_practice_signup');
+        $this->template->title   = "Sign Up";
+        $this->template->body_id = 'signup';		
+	
+		# Innocent until proven guilty
+		$error = false;
+	
+		# Initiate error
+		$this->template->content->error = '<br>';
+	
+		# If we have no post data (i.e. the form was not yet submitted, just display the View with the signup form and be done
+		if(!$_POST) {
+			echo $this->template;
+			return;
+		}
+	
+		# Otherwise...
+		# Loop through the POST data
+		foreach($_POST as $field_name => $value) {
+		
+			# If a field was blank, add a message to the error View variable
+			if($value == "") {
+				$this->template->content->error .= $field_name.' is blank.<br>';
+				$error = true;
+			}
+		}	
+		
+		# Passed
+		if(!$error) {
+			#echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+			/*
+			Code here to enter into DB
+			Code here to redirect them somewhere else
+			*/
+
+        // Insert this user into the database
+    	$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
     	
-    	}	
-  		else{
-    		// if all is well, we return TRUE
-    		return TRUE;
-    	}    	
+    	// In class additions ???
+    	#DB::instance(DB_NAME)->insert_row('users', $_POST):
     	
-    }
-*/    
+    	// For now, just confirm they've signed up - 
+    	// You should eventually make a proper View for this
+    	#echo 'You\'re signed up'; 
+    	
+    	// Send them to the login page
+    	Router::redirect('/users/login');
+    				
+		}
+		else {
+			Render $this->template;
+		}
+ 
+	}
+
     // Helper function to determine duplicate email
     private function unique_email() {
     

@@ -1,13 +1,12 @@
 <form method='POST' action='/users/p_signup'>
 
     First Name<br>
-    <input type='text' name='first_name'>
+    <input type='text' name='first_name' value='<?php if(isset($_POSt['first_name'])) echo $_POST['first_name']?>'>
     <br><br>
     
     Last Name<br>
-    <input type='text' name='last_name'>
+	<input type='text' name='last_name' value='<?php if(isset($_POST['last_name'])) echo $_POST['last_name']?>'>
     <br><br>
-    
     
     Email<br>
     <input type='text' name='email'>
