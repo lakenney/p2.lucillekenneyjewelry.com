@@ -4,33 +4,16 @@
     <input type='text' name='first_name'>
     <br><br>
     
-    <?php if(empty($error)): ?>
-        <div class='error'>
-            Fill in your first name.
-        </div>
-        
-        <br>
-        
-    <?php endif; ?>
-    
     Last Name<br>
     <input type='text' name='last_name'>
     <br><br>
     
-    <?php if(empty($error)): ?>
-        <div class='error'>
-            Fill in your last name.
-        </div>
-        
-        <br>
-        
-    <?php endif; ?>
     
     Email<br>
     <input type='text' name='email'>
     <br><br>
     
-    <?php if(isset($error)): ?>
+    <?php if($unique == false): ?>
         <div class='error'>
             Signup failed. You already have an account.
         </div>
@@ -43,9 +26,10 @@
     <input type='password' name='password'>
     <br><br>
     
-    <?php if(empty($error)): ?>
+
+    <?php if(isset($error)): ?>
         <div class='error'>
-            Fill in your password name.
+            Please fill in all fields!.
         </div>
         
         <br>

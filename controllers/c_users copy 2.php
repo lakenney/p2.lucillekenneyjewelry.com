@@ -20,7 +20,6 @@ class users_controller extends base_controller {
     
         # Setup view
         $this->template->content = View::instance('v_users_signup');
-    	$this->template->content->unique = true;
         $this->template->title   = "Sign Up";
         $this->template->body_id = 'signup';
 
@@ -29,25 +28,28 @@ class users_controller extends base_controller {
             
     }
     
-    // Helper function to validate field !empty
-    private function areFieldsFull() {
+/**    // Helper function to validate field !empty
+    private function empty_field() {
     
-    	if(trim($_POST['first_name']) == false) {
+    	if(!empty($_POST['first_name']))
     		return false;
-		} elseif(trim($_POST['last_name']) == false) {
+    		echo "Fill in your first name."
+    	else{
     		return false;
-    	} elseif(trim($_POST['password']) == false) {
-    		return false;
+    		echo "Fill in your last name."
     	}
+    	else{
+    		return false;
+    		echo "Fill in your password." 
     	
+    	}	
   		else{
     		// if all is well, we return TRUE
     		return TRUE;
-		
     	}    	
     	
     }
-  
+*/    
     // Helper function to determine duplicate email
     private function unique_email() {
     
@@ -93,8 +95,7 @@ class users_controller extends base_controller {
 		// Using Helper function to check for duplicate emails
     	$unique = $this->unique_email();
     	
-    	if(!$unique || !$this->areFieldsFull()) {
-    	
+    	if(!$unique) {
     	// Setup view
         $this->template->content = View::instance('v_users_signup');
         #$this->template->title   = "Signup";
@@ -102,8 +103,7 @@ class users_controller extends base_controller {
 
     	// Pass data to the view
     	$this->template->content->error = true;
-    	$this->template->content->unique = $unique;
-    	
+
     	// Render template
         echo $this->template;
         #echo "This is the login page";
