@@ -33,7 +33,7 @@
     	<?php endif; ?>
 
     	Password<br>
-		<input type='password' name='password' value='<?=$user->password?>'>    
+		<input type='password' name='password'>    
     	<br><br>
     	
     	Do you have a website you'd like to share?<br>
@@ -41,10 +41,9 @@
     	<br><br>
 
     	<input type='submit' value='Edit Profile'>
-    	<br><br>
 
 	</form>     
-	
+    	<br><br>
         <p>Your profile has been saved!</p>
          
  

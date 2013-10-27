@@ -162,6 +162,8 @@ class users_controller extends base_controller {
         
         // Modify the $_POST array so it's ready to be inserted 
         // in the database (drop empty fields)
+        // Can I use Helper function to validate field !empty for this?
+
         
         // Add the modified date data
     	$_POST['modified'] = Time::now();    
@@ -173,7 +175,7 @@ class users_controller extends base_controller {
 		// And the additional parameters are the WHERE clause 
 		// to make sure you update the correct user
 		
-		DB::instance(DB_NAME)->update('users', $_POST, ["WHERE user_id" = .$this->user->user_id]);    	
+		DB::instance(DB_NAME)->update('users', $_POST, ["WHERE user_id =" .$this->user->user_id]);    	
     	    	
     }
     

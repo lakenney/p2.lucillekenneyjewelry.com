@@ -204,7 +204,7 @@ a.to_nav:focus {
 #access {
 	position: absolute;
 	top: 55px;
-	right: 10px;
+	left: 10px;
 	background: none;
 	}
 #access ul {
@@ -319,6 +319,17 @@ a.to_nav:focus {
 	background-color: orange;
 }
 
+/* My css */
+
+time {
+	font-size: smaller;
+	color: #dadada;
+}
+
+article {
+	background-color: #f2f2f2;
+}
+
 /*footer*/
 
 footer {
@@ -386,9 +397,9 @@ footer {
 			/* access navigation */
 			#access {
 				position: absolute;
-				top: 55px;
-				right: 10px;
-				background: none;
+				top: 65px;
+				left: 10px;
+				background: darkgray;
 			}
 			
 			#access li {
