@@ -130,6 +130,54 @@ class users_controller extends base_controller {
     	}
     	
     }
+    
+	/*-------------------------------------------------------------------------------------------------
+	EDIT
+	-------------------------------------------------------------------------------------------------*/
+
+    public function edit() {
+        
+        # Setup view
+        $this->template->content = View::instance('v_users_edit');
+    	$this->template->content->unique = true;
+        $this->template->title   = "Edit Profile";
+        $this->template->body_id = 'edit';
+
+        # Render template
+            echo $this->template;
+                	
+        echo "This is the edit profile page";
+    }
+    
+    public function p_edit() {
+    // similar to a signup and p_signup
+    // Except that you are updating an existing record in the database 
+    // rather than inserting a new record
+    // And you don't want to change the token, or the created date!
+    
+        // Dump out the results of POST to see what the form submitted
+        #echo '<pre>'
+        #print_r($_POST);
+        #echo '</pre>'
+        
+        // Modify the $_POST array so it's ready to be inserted 
+        // in the database (drop empty fields)
+        
+        // Add the modified date data
+    	$_POST['modified'] = Time::now();    
+    	
+    	// Encrypt the password with salt
+    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	
+    	// Update database straight from the $_POST array, like you do with the sign-up
+		// And the additional parameters are the WHERE clause 
+		// to make sure you update the correct user
+		
+		DB::instance(DB_NAME)->update('users', $_POST, ["WHERE user_id" = .$this->user->user_id]);    	
+    	    	
+    }
+    
+    
 
 	/*-------------------------------------------------------------------------------------------------
 	LOGIN
@@ -248,21 +296,6 @@ class users_controller extends base_controller {
         #echo "This is the logout page";
         
     }
-    
-        public function edit() {
-        
-        # Setup view
-        $this->template->content = View::instance('v_users_edit');
-    	$this->template->content->unique = true;
-        $this->template->title   = "Edit Profile";
-        $this->template->body_id = 'edit';
-
-        # Render template
-            echo $this->template;
-                	
-        echo "This is the edit profile page";
-    }
-    
 	/*-------------------------------------------------------------------------------------------------
 	PROFILE
 	-------------------------------------------------------------------------------------------------*/
