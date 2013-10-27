@@ -1,14 +1,7 @@
-<form method='POST' action='/posts/p_add'>
 
-    <label for='content'>New Post</label><br>
-    <textarea  cols="60" rows="10" name='content' id='content'>Say something nice.</textarea>
-    
-    <br><br>
-    <input type='submit' value='New Post'>
 
-</form>
 
-<!-- view within a view -->
+<!-- posts I'm following-->
 
 <br> <br>
 

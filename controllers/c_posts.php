@@ -23,6 +23,7 @@ class posts_controller extends base_controller {
     	#$this->template->content = View::instance('v_posts_add');
     	
     	$this->template->title   = "Posts";
+    	$this->template->body_id   = 'posts';
 
     	/* This is the entire steam of posts
     	// Build the query
@@ -113,6 +114,7 @@ class posts_controller extends base_controller {
     	// Set up the View
     	$this->template->content = View::instance("v_posts_users");
     	$this->template->title   = "Users";
+    	$this->template->body_id = 'users'; 
 
     	// Build the query to get all the users
     	$q = "SELECT *

@@ -45,6 +45,10 @@
 	
 	</article>
 
+	<!-- I placed the nav bar here because I'm using a mobile first responsive template 
+		which gives more importance to content with the nav bar listed under content and
+		a 'menu' link at the top to bounce to the nav below -->
+		
     <nav id='primary_nav'>
 			<ul>
         		<li id="navindex_index"><a href='/'>Home</a></li>
@@ -56,9 +60,11 @@
         	<?php if($user): ?>
     <nav id='access'>
 			<ul >
-            	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
-            	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             	<li id="navadd"><a href='/posts/add'>Add Post</a></li>
+            	<li id="navposts"><a href='/posts/'>View Posts<a/></li>
+            	<li id="navusers"><a href='/posts/users'>Follow Users<a/></li>
+            	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
+            	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
 				<li class="top"><a href="#home" title="...">Top</a></li>            	
             </ul>
     </nav><!-- end primary_nav-->

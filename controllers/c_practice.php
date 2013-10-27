@@ -2,6 +2,67 @@
 
 class practice_controller extends base_controller {
 
+
+    public function edit() {
+    
+    if(!$this->user) { 
+    
+    	// If user is blank, they're not logged in; redirect them to the login page
+    	if(!$this->user) {
+        Router::redirect('/users/login');
+        
+    // Load user from  DB
+		$q = "SELECT *
+			FROM ".$this->user."
+			WHERE token = '".$this->token."'
+			LIMIT 1";
+			}
+			
+		$this->user = DB::instance(DB_NAME)->select_row($q, "object");
+		
+		echo $q;    
+    	
+        echo "This is the edit user page";
+        }
+
+    }
+
+	/*-------------------------------------------------------------------------------------------------
+	Demonstrating 
+	-------------------------------------------------------------------------------------------------*/
+	
+
+	
+	public function profile_update() {
+	
+	
+	$q = "UPDATE users
+			Set first_name = '".$_REQUEST['firstname']."'
+			WHERE email = '".$this->user->email."'";
+			
+	#Run the command
+	DB::instance(DB_NAME)->query($q);
+	echo "First name updated";		
+	
+	}
+
+	/*-------------------------------------------------------------------------------------------------
+	Demonstrating 
+	-------------------------------------------------------------------------------------------------*/
+	public function display_profile() {
+	
+    $q = "SELECT * 
+        	FROM users
+        	WHERE user_id = ".$this->user->user_id;
+			
+	// echo a query is a useful debugging technique
+	#echo $q;
+		
+	// Run the query, echo what it returns	
+	echo DB::instance(DB_NAME)->select_field($q);
+	
+	}
+
 	/*-------------------------------------------------------------------------------------------------
 	Demonstrating sample method
 	-------------------------------------------------------------------------------------------------*/
@@ -57,10 +118,10 @@ class practice_controller extends base_controller {
 	}
 	
 	/*-------------------------------------------------------------------------------------------------
-Demonstrating an alternative way to handle signup errors.
-In this method, we're submitting the signup form to itself.
--------------------------------------------------------------------------------------------------*/
-public function signup() {
+	Demonstrating an alternative way to handle signup errors.
+	In this method, we're submitting the signup form to itself.
+	-------------------------------------------------------------------------------------------------*/
+	public function signup() {
 	
 	# Set up view
 	$this->template->content = View::instance('v_practice_signup');

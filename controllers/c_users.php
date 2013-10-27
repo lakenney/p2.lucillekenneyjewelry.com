@@ -7,7 +7,7 @@ class users_controller extends base_controller {
     } 
 
     public function index() {
-    
+        
     echo "This is the index page";
     
     }
@@ -250,8 +250,17 @@ class users_controller extends base_controller {
     }
     
         public function edit() {
-    
-        echo "This is the edit user page";
+        
+        # Setup view
+        $this->template->content = View::instance('v_users_edit');
+    	$this->template->content->unique = true;
+        $this->template->title   = "Edit Profile";
+        $this->template->body_id = 'edit';
+
+        # Render template
+            echo $this->template;
+                	
+        echo "This is the edit profile page";
     }
     
 	/*-------------------------------------------------------------------------------------------------
