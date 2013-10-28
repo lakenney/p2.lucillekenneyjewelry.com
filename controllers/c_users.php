@@ -29,12 +29,14 @@ class users_controller extends base_controller {
             
     }
     
-    // Helper function to validate field !empty
+    // Helper function to validate field trim
     private function areFieldsFull() {
     
     	if(trim($_POST['first_name']) == false) {
     		return false;
 		} elseif(trim($_POST['last_name']) == false) {
+    		return false;
+		} elseif(trim($_POST['email']) == false) {
     		return false;
     	} elseif(trim($_POST['password']) == false) {
     		return false;
@@ -43,7 +45,6 @@ class users_controller extends base_controller {
   		else{
     		// if all is well, we return TRUE
     		return TRUE;
-		
     	}    	
     	
     }
@@ -66,7 +67,7 @@ class users_controller extends base_controller {
 			// If there is a match $q will be greater than 0
 			return false;
 		}
-		else {
+		else{
 			return true;
 		}
     
@@ -78,18 +79,7 @@ class users_controller extends base_controller {
         #echo '<pre>'
         #print_r($_POST);
         #echo '</pre>'
-        
-        // More data we want stored with the user
-    	$_POST['created']  = Time::now();
-    	$_POST['modified'] = Time::now();
-    	
-    	// Encrypt the password with salt
-    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-    	
-    	// This is how we will determine if the user is logged in
-    	// Create an encrypted token via their email address and a random string
-    	$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
-    	
+            	
 		// Using Helper function to check for duplicate emails
     	$unique = $this->unique_email();
     	
@@ -115,6 +105,19 @@ class users_controller extends base_controller {
     	
     	} else {
     	
+        // More data we want stored with the user
+        // I had to move it after my error check for empty because password was
+        // getting salted and hashed so it was never empty
+    	$_POST['created']  = Time::now();
+    	$_POST['modified'] = Time::now();
+    	
+    	// Encrypt the password with salt
+    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	
+    	// This is how we will determine if the user is logged in
+    	// Create an encrypted token via their email address and a random string
+    	$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
         // Insert this user into the database
     	$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
     	
