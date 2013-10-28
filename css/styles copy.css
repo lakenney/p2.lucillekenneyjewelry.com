@@ -90,6 +90,7 @@ h2 {
 }
 
 /*layout*/
+
 .wrapper {
 }
 
@@ -100,6 +101,7 @@ article {
 }
 
 /*header*/
+
 header {
 	background: #49afcc;
 	padding: 15px 20px;
@@ -120,7 +122,6 @@ header {
 		header {
 		    zoom:1;
 		}
-		/* end nicolas gallagher */
 
 h1.logo a {
 	color: #fff;
@@ -157,6 +158,7 @@ a.to_nav:focus {
 }
 	
 /*primary navigation*/	
+
 #primary_nav ul {
 	list-style: none;
 	background: #49afcc;
@@ -199,16 +201,34 @@ a.to_nav:focus {
 }
 
 /*nav for access to login*/	
+#access {
+	position: absolute;
+	top: 55px;
+	right: 10px;
+	background: darkgray;
+	}
 #access ul {
 	list-style: none;
-	background-color: none;
-	padding: 5px 0;
-}
-
+	line-height:52px;
+	margin-bottom:10px;	}
+#access li {
+	display: inline;
+	}
+#access li a {
+	float: left;
+	border: none;
+	padding: 0 10px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	}
+#access li.top {
+	display: none;
+	}
 #access li a {
 	display: block;
 	padding: 0 20px;
-	color: #49afcc;
+	color: #red;
 	text-decoration: none;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -216,13 +236,11 @@ a.to_nav:focus {
 	letter-spacing: 0.1em;
 	line-height: 2em;
 	height: 2em;
-	border-bottom: 1px solid ##d8d8d8;
+	/*border-bottom: 1px solid #383838;*/
 }
-
 #access li:last-child a {
 	border-bottom: none;
 }
-
 #access li a:hover,
 #access li a:focus {
 	color: #1c1c1c;
@@ -234,34 +252,27 @@ a.to_nav:focus {
 #access ul li#iamhere a:link,
 #access ul li#iamhere a:visited,
 #access ul li#iamhere a:hover { 	
-	color: #1c1c1c; 
+	color: #1c1c1c;
 	background: #ccc;
-	/*background-color:transparent; 	
-	border-bottom: 10px solid #383838;*/
 }
 
 .error {
 	color:red;
-}
-
+}			
 /*nav for access to logout*/	
 #access_out {
 	position: absolute;
 	top: 55px;
 	right: 10px;
 	background: none;
-}
-
+	}
 #access_out ul {
 	list-style: none;
 	line-height:52px;
-	margin-bottom:10px;	
-}
-
+	margin-bottom:10px;	}
 #access_out li {
 	display: inline;
-}
-
+	}
 #access_out li a {
 	float: left;
 	border: none;
@@ -269,12 +280,10 @@ a.to_nav:focus {
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
-}
-
+	}
 #access_out li.top {
 	display: none;
-}
-
+	}
 #access_out li a {
 	display: block;
 	padding: 0 20px;
@@ -288,11 +297,9 @@ a.to_nav:focus {
 	height: 2em;
 	/*border-bottom: 1px solid #383838;*/
 }
-
 #access_out li:last-child a {
 	border-bottom: none;
 }
-
 #access_out li a:hover,
 #access_out li a:focus {
 	color: #1c1c1c;
@@ -328,103 +335,84 @@ footer {
 	font-size: 14px;
 }
 
+		/*shorter clearfix http://nicolasgallagher.com/micro-clearfix-hack/*/
+		access:before,
+		access:after {
+		    content:"";
+		    display:table;
+		}
+		
+		access:after {
+		    clear:both;
+		}
+		
+		/* For IE 6/7 (trigger hasLayout) */
+		access {
+		    zoom:1;
+		}
+
+
 /*media queries*/
 
-@media only screen and (min-width: 768px) {
+		@media only screen and (min-width: 768px) {
 		
-	a.to_nav {
-		display: none;
-	}
+			a.to_nav {
+				display: none;
+			}
 			
-	.wrapper {
-		position: relative;
-		width: 768px;
-		margin: auto;
-	}
-	/* primary navigation */
-	#primary_nav {
-		position: absolute;
-		top: 5px;
-		right: 10px;
-		background: none;
-	}
+			.wrapper {
+				position: relative;
+				width: 768px;
+				margin: auto;
+			}
+			/* primary navigation */
+			#primary_nav {
+				position: absolute;
+				top: 5px;
+				right: 10px;
+				background: none;
+			}
 			
-	#primary_nav li {
-		display: inline;
-	}
+			#primary_nav li {
+				display: inline;
+			}
 			
-	#primary_nav li a {
-		float: left;
-		border: none;
-		color: #fff;
-		padding: 0 10px;
-		-webkit-border-radius: 2px;
-		-moz-border-radius: 2px;
-		border-radius: 2px;
-	}
+			#primary_nav li a {
+				float: left;
+				border: none;
+				padding: 0 10px;
+				-webkit-border-radius: 2px;
+				-moz-border-radius: 2px;
+				border-radius: 2px;
+			}
 			
-	#primary_nav li.top {
-		display: none;
-	}
+			#primary_nav li.top {
+				display: none;
+			}
 			
-	/* access navigation when logged in */
-	#access {
-		position: absolute;
-		top: 63px;
-		right: 10px;
-		background: none;
-	}
-	#access ul {
-	list-style: none;
-	color: #c1c1c1;
-	line-height:52px;
-	margin-bottom:10px;
-	}
+			/* access navigation */
+			#access {
+				position: absolute;
+				top: 55px;
+				right: 10px;
+				background: none;
+			}
 			
-	#access li {
-		display: inline;
-	}
+			#access li {
+				display: inline;
+			}
 			
-	#access li a {
-		float: left;
-		border: none;
-		color: #49afcc;
-		padding: 0 10px;
-		-webkit-border-radius: 2px;
-		-moz-border-radius: 2px;
-		border-radius: 2px;
-	}
-	#access li.top {
-		display: none;
+			#access li a {
+				float: left;
+				border: none;
+				padding: 0 10px;
+				-webkit-border-radius: 2px;
+				-moz-border-radius: 2px;
+				border-radius: 2px;
+			}
+			
+			#access li.top {
+				display: none;
+			}
+	
 		}
-	#access li a {
-		display: block;
-		padding: 0 20px;
-		color: #red;
-		text-decoration: none;
-		font-weight: bold;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		letter-spacing: 0.1em;
-		line-height: 2em;
-		height: 2em;
-		/*border-bottom: 1px solid #383838;*/
-	}
-	#access li:last-child a {
-		border-bottom: none;
-	}
-	#access li a:hover,
-	#access li a:focus {
-		color: #fff;
-		background: #ccc;
-	}
-
-	/* styles for the 'highlightnavigation.js file navigation active */
-	#access ul li#iamhere a,
-	#access ul li#iamhere a:link,
-	#access ul li#iamhere a:visited,
-	#access ul li#iamhere a:hover { 	
-		color: #1c1c1c;
-		background: #ccc;
-	}
-}

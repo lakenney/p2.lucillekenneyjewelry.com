@@ -29,7 +29,7 @@ class users_controller extends base_controller {
             
     }
     
-    // Helper function to validate field trim
+    // Helper function to validate field trim (empty fields in signup)
     private function areFieldsFull() {
     
     	if(trim($_POST['first_name']) == false) {
@@ -41,7 +41,6 @@ class users_controller extends base_controller {
     	} elseif(trim($_POST['password']) == false) {
     		return false;
     	}
-    	
   		else{
     		// if all is well, we return TRUE
     		return TRUE;
@@ -102,8 +101,8 @@ class users_controller extends base_controller {
         	// Signin failed ... maybe give 'forgot password' option to reset password.
         	//echo "You already have an account";
         	//Router::redirect("/users/signup/error");
-    	
-    	} else {
+    	} 
+    	else{
     	
         // More data we want stored with the user
         // I had to move it after my error check for empty because password was
@@ -144,7 +143,7 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_users_edit');
     	$this->template->content->unique = true;
         $this->template->title   = "Edit Profile";
-        $this->template->body_id = 'edit';
+        #$this->template->body_id = 'edit';
 
         # Render template
             echo $this->template;
@@ -182,8 +181,6 @@ class users_controller extends base_controller {
     	    	
     }
     
-    
-
 	/*-------------------------------------------------------------------------------------------------
 	LOGIN
 	-------------------------------------------------------------------------------------------------*/
