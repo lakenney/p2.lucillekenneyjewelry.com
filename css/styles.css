@@ -23,20 +23,25 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
@@ -90,8 +95,6 @@ h2 {
 }
 
 /*layout*/
-.wrapper {
-}
 
 article {
 	border-bottom: 1px solid #d8d8d8;
@@ -271,10 +274,6 @@ a.to_nav:focus {
 	border-radius: 2px;
 }
 
-#access_out li.top {
-	display: none;
-}
-
 #access_out li a {
 	display: block;
 	padding: 0 20px;
@@ -363,9 +362,9 @@ footer {
 		border-radius: 2px;
 	}
 			
-	#primary_nav li.top {
+	/*	#primary_nav li.top {
 		display: none;
-	}
+	}*/
 			
 	/* access navigation when logged in */
 	#access {
@@ -375,10 +374,10 @@ footer {
 		background: none;
 	}
 	#access ul {
-	list-style: none;
-	color: #c1c1c1;
-	line-height:52px;
-	margin-bottom:10px;
+		list-style: none;
+		color: #c1c1c1;
+		line-height:52px;
+		margin-bottom:10px;
 	}
 			
 	#access li {
@@ -396,7 +395,7 @@ footer {
 	}
 	#access li.top {
 		display: none;
-		}
+	}
 	#access li a {
 		display: block;
 		padding: 0 20px;

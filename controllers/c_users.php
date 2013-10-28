@@ -6,11 +6,11 @@ class users_controller extends base_controller {
         #echo "users_controller construct called<br><br>";
     } 
 
-    public function index() {
+    /*public function index() {
         
     echo "This is the index page";
     
-    }
+    }*/
 
 	/*-------------------------------------------------------------------------------------------------
 	SIGNUP
@@ -152,32 +152,7 @@ class users_controller extends base_controller {
     }
     
     public function p_edit() {
-    // similar to a signup and p_signup
-    // Except that you are updating an existing record in the database 
-    // rather than inserting a new record
-    // And you don't want to change the token, or the created date!
-    
-        // Dump out the results of POST to see what the form submitted
-        #echo '<pre>'
-        #print_r($_POST);
-        #echo '</pre>'
-        
-        // Modify the $_POST array so it's ready to be inserted 
-        // in the database (drop empty fields)
-        // Can I use Helper function to validate field !empty for this?
 
-        
-        // Add the modified date data
-    	$_POST['modified'] = Time::now();    
-    	
-    	// Encrypt the password with salt
-    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-    	
-    	// Update database straight from the $_POST array, like you do with the sign-up
-		// And the additional parameters are the WHERE clause 
-		// to make sure you update the correct user
-		
-		DB::instance(DB_NAME)->update('users', $_POST, ["WHERE user_id =" .$this->user->user_id]);    	
     	    	
     }
     
@@ -309,10 +284,11 @@ class users_controller extends base_controller {
     	
     	// If user is blank, they're not logged in; redirect them to the login page
     	if(!$this->user) {
-        	Router::redirect('/users/login');
+        	#Router::redirect('/users/login')
+        	die('Members only. <a href="/users/login">Login</a>');
     	}
 
-    	// If they weren't redirected away, continue:
+    	// If they were not redirected away, continue:
     	
     	/*
     	If you look at _v_template you'll see it prints a $content variable in the <body>

@@ -44,6 +44,5 @@
 
 	</form>     
     	<br><br>
-        <p>Your profile has been saved!</p>
          
  

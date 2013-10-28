@@ -19,8 +19,6 @@
     <!-- Navigation highlight css 'iamhere' -->
 	<script type="text/javascript" src="/js/highlightnavigation.js"> </script>
 	
-
-
 	<!-- Controller Specific JS/CSS -->
 	<!-- <?php if(isset($client_files_head)) echo $client_files_head; ?>-->
 	
@@ -34,7 +32,7 @@
 		
 		<h1 class="logo"><a href="">Lucille Kenney Jewelry</a></h1>
 			
-		<a class="to_nav" href="#primary_nav">Menu</a>
+		<a class="to_nav" href="#access">Menu</a>
 		
 	</header>
 
@@ -48,38 +46,39 @@
 	<!-- I placed the nav bar here because I'm using a mobile first responsive template 
 		which gives more importance to content with the nav bar listed under content and
 		a 'menu' link at the top to bounce to the nav below -->
-		
+
+    <!-- Primary navigation accessible to all -->
     <nav id='primary_nav'>
-			<ul>
-        		<li id="navindex_index"><a href='/'>Home</a></li>
-        		<li id="navproducts"><a href='/products'>Products</a></li>
-        		<li id="navcontact"><a href='/contact'>Contact</a></li>
-        	</ul>
+		<ul>
+        	<li id="navindex_index"><a href='/'>Home</a></li>
+        	<li id="navproducts"><a href='/products'>Products</a></li>
+        	<li id="navcontact"><a href='/contact'>Contact</a></li>
+        </ul>
     </nav><!-- end primary_nav-->
-        	<!-- Menu for users who are logged in -->
-        	<?php if($user): ?>
-    <nav id='access'>
+    
+    <!-- Menu for users who are logged in -->
+    <?php if($user): ?>
+    	<nav id='access'>
 			<ul >
             	<li id="navadd"><a href='/posts/add'>Add</a></li>
             	<li id="navposts"><a href='/posts/'>View<a/></li>
             	<li id="navusers"><a href='/posts/users'>Follow<a/></li>
             	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
-				<li class="top"><a href="#home" title="...">Top</a></li>            	
+				<li class="top"><a href="#home">Top</a></li>            	
             </ul>
-    </nav><!-- end primary_nav-->
-        	<!-- Menu options for users who are not logged in -->
-        	<?php else: ?>
-    <nav id='access_out'>
+    	</nav><!-- end primary_nav-->
+    	
+    <!-- Menu options for users who are not logged in -->
+    <?php else: ?>
+    	<nav id='access_out'>
         	<ul>
             	<li id="navsignup"><a href='/users/signup'>Sign up</a></li>
             	<li id="navlogin"><a href='/users/login'>Log in</a></li>
-				<li class="top"><a href="#home" title="...">Top</a></li>            
 			</ul>
-    </nav><!-- end primary_nav-->
+    	</nav><!-- end primary_nav-->
 
-        	<?php endif; ?>
-
+    <?php endif; ?>
 
     <br>
 
