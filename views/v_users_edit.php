@@ -36,10 +36,10 @@
 		<input type='password' name='password'>    
     	<br><br>
     	
-<!--  	Do you have a website you'd like to share?<br>
+	  	Do you have a website you'd like to share?<br>
 		<input type='text' name='website' value='<?php if(isset($_POST['website'])) echo $_POST['website']?>'>
     	<br><br>
--->
+
     	<input type='submit' value='Edit Profile'>
 
 	</form>     

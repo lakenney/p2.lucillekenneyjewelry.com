@@ -165,7 +165,6 @@ class users_controller extends base_controller {
 	# Loop through the POST data
 	foreach($_POST as $field_name => $value) {
 
-		
 		echo $value;
 		
 		# Check for blank fields
