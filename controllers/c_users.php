@@ -6,11 +6,11 @@ class users_controller extends base_controller {
         #echo "users_controller construct called<br><br>";
     } 
 
-    /*public function index() {
+    public function index() {
         
     echo "This is the index page";
     
-    }*/
+    }
 
 	/*-------------------------------------------------------------------------------------------------
 	SIGNUP
@@ -144,16 +144,68 @@ class users_controller extends base_controller {
     	$this->template->content->unique = true;
         $this->template->title   = "Edit Profile";
         #$this->template->body_id = 'edit';
-
-        # Render template
-            echo $this->template;
-                	
-        echo "This is the edit profile page";
+		
+		// Render template
+		echo $this->template;
+        
+        // echo "This is the edit profile page";
     }
     
     public function p_edit() {
+    
+    	// Set error at default state
+    	$error = false;
+    	
+		if(!$_POST) {
+			Router::redirect('/users/edit');
+			return;
+		}
+		
+	# Otherwise...
+	# Loop through the POST data
+	foreach($_POST as $field_name => $value) {
 
-    	    	
+		
+		echo $value;
+		
+		# Check for blank fields
+		if($value == "") {
+			$this->template = $field_name.' is blank.<br>';
+			
+		// Modify the $_POST array so it's ready to be inserted 
+        // in the database (drop empty fields) 
+
+	 	echo $this->template;
+ 		#Router::redirect('/users/edit');
+ 		}
+	}
+	
+		# Passed
+		if($error==false) {
+		// echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+			
+		// Enter into DB
+        
+        // Add additional data
+    	$_POST['modified'] = Time::now();  
+    	
+    	// Encrypt the password with salt
+    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	
+    	// Update database straight from the $_POST array, similar to insert in sign-up
+		// And the additional parameters are the WHERE clause 
+		// to make sure the correct user is updated
+		DB::instance(DB_NAME)->update('users', $_POST, "WHERE user_id =" .$this->user->user_id);
+
+    	// Code here to redirect them somewhere else
+    				
+		}	
+		else {
+    	// Send them to the ... page
+    	#Router::redirect('/users/profile');			
+    	#echo $this->template;
+		}
+
     }
     
 	/*-------------------------------------------------------------------------------------------------
