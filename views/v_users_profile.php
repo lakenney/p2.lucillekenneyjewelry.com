@@ -1,4 +1,16 @@
+<br> <br>
+
 <h1>This is the profile of <?=$user->first_name?></h1>
+
+
+<!-- Edit your profile -->
+<!--
+<div>
+    <?=Content;?>    
+</div>
+-->
+<br> <br>
+
 
 <!-- <?php if(isset($user_name)): ?>
 <h2>This is the profile for <?=$user_name ?> </h2>

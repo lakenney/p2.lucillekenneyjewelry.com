@@ -155,30 +155,29 @@ class users_controller extends base_controller {
     
     	// Set error at default state
     	$error = false;
-    	
+
 		if(!$_POST) {
 			Router::redirect('/users/edit');
 			return;
 		}
-		
-	# Otherwise...
-	# Loop through the POST data
-	foreach($_POST as $field_name => $value) {
+		# Otherwise...
 
-		echo $value;
-		
-		# Check for blank fields
-		if($value == "") {
-			$this->template = $field_name.' is blank.<br>';
-			
 		// Modify the $_POST array so it's ready to be inserted 
         // in the database (drop empty fields) 
-
-	 	echo $this->template;
- 		#Router::redirect('/users/edit');
+		// Create an array ($valid_fields) to drop out empty fields and replace the $_POST
+		$valid_fields = Array();
+		
+		// Loop through the POST data
+		foreach($_POST as $field_name => $value) {
+                
+        	if(!(trim($value)=="")) {
+        		$valid_fields[$field_name] = $value;
+        	#echo $field_name."<br/>";
+        	}
  		}
-	}
-	
+		#var_dump($valid_fields);
+		#var_dump($_POST);
+
 		# Passed
 		if($error==false) {
 		// echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
@@ -186,15 +185,15 @@ class users_controller extends base_controller {
 		// Enter into DB
         
         // Add additional data
-    	$_POST['modified'] = Time::now();  
+    	$valid_fields['modified'] = Time::now();  
     	
     	// Encrypt the password with salt
-    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	$valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
     	
     	// Update database straight from the $_POST array, similar to insert in sign-up
 		// And the additional parameters are the WHERE clause 
 		// to make sure the correct user is updated
-		DB::instance(DB_NAME)->update('users', $_POST, "WHERE user_id =" .$this->user->user_id);
+		DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
 
     	// Code here to redirect them somewhere else
     				
@@ -332,6 +331,9 @@ class users_controller extends base_controller {
     
     	// Don't have to do this because it's already in the base_controller
     	#$template = View::instance('_v_template');
+    	
+    	$this->template->content = View::instance('v_users_edit');
+
     	
     	// If user is blank, they're not logged in; redirect them to the login page
     	if(!$this->user) {

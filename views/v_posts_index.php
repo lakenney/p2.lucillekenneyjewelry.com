@@ -1,7 +1,10 @@
+<!-- Add an new post -->
+<div>
+    <?=$moreContent;?>    
+</div>
+<br> <br>
 
-
-
-<!-- posts I'm following-->
+<!-- Users posts I'm following-->
 
 <br> <br>
 

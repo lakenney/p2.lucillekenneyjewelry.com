@@ -12,19 +12,21 @@ class posts_controller extends base_controller {
     } 
     
     /*-------------------------------------------------------------------------------------------------
-	INDEX
+	INDEX ... displays Add posts and Followed users.
 	-------------------------------------------------------------------------------------------------*/
     public function index() {
 
     	// Set up the View
     	$this->template->content = View::instance('v_posts_index');
+    	// Another view
+        $this->template->content->moreContent = View::instance('v_posts_add');
     	
-    	// I want followed posts listed under my add method
-    	#$this->template->content = View::instance('v_posts_add');
+    	#$this->template->title   = "Posts";
+    	#$this->template->body_id   = 'posts';
+        $this->template->title   = "New Post and Followed Users";
+        $this->template->body_id = 'add'; 
+        
     	
-    	$this->template->title   = "Posts";
-    	$this->template->body_id   = 'posts';
-
     	/* This is the entire steam of posts
     	// Build the query
     	$q = "SELECT 
@@ -67,12 +69,15 @@ class posts_controller extends base_controller {
 	ADD a post
 	-------------------------------------------------------------------------------------------------*/
 
-        public function add() {
+    public function add() {
     
        	// Setup view
-        $this->template->content = View::instance('v_posts_add');
-        $this->template->title   = "New Post";
-        $this->template->body_id = 'add'; 
+        #$this->template->content = View::instance('v_posts_add');
+        #$this->template->title   = "New Post";
+        #$this->template->body_id = 'add'; 
+        
+        // Another view
+        #$this->template->content->moreContent = View::instance('v_posts_index'); 
 
         // Render template
         echo $this->template;
@@ -86,6 +91,8 @@ class posts_controller extends base_controller {
     	#echo "<pre>";
     	#print_r($_POST();
     	#echo "</pre>";
+    	
+    	// Check for empty post
     	
         // Associate this post with this user
         $_POST['user_id']  = $this->user->user_id;
@@ -136,6 +143,8 @@ class posts_controller extends base_controller {
     	// Store our results (an array) in the variable $connections
     	$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 
+		// print_r($conections);
+	
     	// Pass data (users and connections) to the view
     	$this->template->content->users       = $users;
     	$this->template->content->connections = $connections;
@@ -150,6 +159,8 @@ class posts_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 
 	public function follow($user_id_followed) {
+	
+		// How do I automatically follow myself?
 	
     	$this->template->body_id = 'follow'; 
 
@@ -184,40 +195,6 @@ class posts_controller extends base_controller {
 	}
 
     /*-------------------------------------------------------------------------------------------------
-	...
-	-------------------------------------------------------------------------------------------------*/
-
-    public function all($all_posts = NULL) {
-            
-        # Setup view
-        $this->template->content = View::instance('v_posts_all');
-        $this->template->title   = "View All Posts";
-        
-        //Query the DB for all posts and put into array
-        $view_posts = DB::instance(DB_NAME)->select_rows('SELECT * FROM posts');
-
-		$this->template->content->view_posts = $view_posts;
-
-        # Render template
-        echo $this->template;
-    
-        echo "This is the posts page";
-    }
-    
-    /*public function p_all() {
-    
-        //Query the DB for all posts and put into array
-        $view_posts = DB::instance(DB_NAME)->select_rows('SELECT * FROM posts');
-
-		$this->template->content->view_posts = $view_posts;
-
-        # Render template
-        echo $this->template;    
-    }*/
-    
-
-    
-    /*-------------------------------------------------------------------------------------------------
 	Demonstrating Classes/Objects
 	-------------------------------------------------------------------------------------------------*/
 	public function display_image() {
@@ -241,25 +218,17 @@ class posts_controller extends base_controller {
 		$imageObj->display();
 
 	}
-    
-
-            
-
-    
 
     public function edit() {
     
-    
-        echo "This is the edit post page";
+        echo "This is the edit/delete post method";
     }
-
-    #public function delete() {
-        #echo "This is the delete post page";
-    #}
     
     public function search() {
-        echo "This is the delete post page";
+    
+        echo "This is the search post method";
     }
+    
     #public function profile($user_name = NULL) {
 
        #if($user_name == NULL) {

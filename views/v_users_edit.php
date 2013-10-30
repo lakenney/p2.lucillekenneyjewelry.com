@@ -1,4 +1,4 @@
-
+<!-- I want this to get placed inside 'v_users_profile' -->
      
     <h2>Hello <?=$user->first_name?></h2>
       

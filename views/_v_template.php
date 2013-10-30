@@ -60,8 +60,8 @@
     <?php if($user): ?>
     	<nav id='access'>
 			<ul >
-            	<li id="navadd"><a href='/posts/add'>Add</a></li>
-            	<li id="navposts"><a href='/posts/'>View<a/></li>
+            	<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
+            	<li id="navadd"><a href='/posts/'>Add<a/></li>
             	<li id="navusers"><a href='/posts/users'>Follow<a/></li>
             	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
