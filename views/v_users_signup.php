@@ -16,7 +16,6 @@
         <div class='error'>
             Signup failed. You already have an account.
         </div>
-        
         <br>
         
     <?php endif; ?>
@@ -30,7 +29,6 @@
         <div class='error'>
             Please fill in all fields!.
         </div>
-        
         <br>
         
     <?php endif; ?>

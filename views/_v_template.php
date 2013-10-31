@@ -30,7 +30,7 @@
 	
 	<header>
 		
-		<h1 class="logo"><a href="">Lucille Kenney Jewelry</a></h1>
+		<h1 class="logo"><a href="">Talkfest</a></h1>
 			
 		<a class="to_nav" href="#access">Menu</a>
 		
@@ -43,9 +43,11 @@
 	
 	</article>
 
-	<!-- I placed the nav bar here because I'm using a mobile first responsive template 
+	<!-- 
+		I placed the nav bar here because I'm using a mobile first responsive template 
 		which gives more importance to content with the nav bar listed under content and
-		a 'menu' link at the top to bounce to the nav below -->
+		a 'menu' link at the top to bounce to the nav below 
+	-->
 
     <!-- Primary navigation accessible to all -->
     <nav id='primary_nav'>
@@ -61,7 +63,7 @@
     	<nav id='access'>
 			<ul >
             	<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
-            	<li id="navadd"><a href='/posts/'>Add<a/></li>
+            	<li id="navadd"><a href='/posts'>Add<a/></li>
             	<li id="navusers"><a href='/posts/users'>Follow<a/></li>
             	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             	<li id="navlogout"><a href='/users/logout'>Logout</a></li>

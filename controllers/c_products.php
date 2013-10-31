@@ -8,8 +8,7 @@ class products_controller extends base_controller {
 
     public function index() {
     
-    
-        echo "This is the index page";
+        #echo "This is the index page";
     }
 
     public function test() {

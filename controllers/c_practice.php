@@ -26,6 +26,69 @@ class practice_controller extends base_controller {
         }
 
     }
+    
+    public function p_edit() {
+    
+    	// Set error at default state
+    	$error = false;
+
+		if(!$_POST) {
+			Router::redirect('/users/edit');
+			return;
+		}
+		# Otherwise...
+
+		// Modify the $_POST array so it's ready to be inserted 
+        // in the database (drop empty fields) 
+		// Create an array ($valid_fields) to drop out empty fields and replace the $_POST
+		$valid_fields = Array();
+		
+		// Loop through the POST data
+		foreach($_POST as $field_name => $value) {
+                
+        	if(!(trim($value)=="")) {
+        		$valid_fields[$field_name] = $value;
+        	#echo $field_name."<br/>";
+        	}
+ 		}
+		#var_dump($valid_fields);
+		#var_dump($_POST);
+/**		
+			if(!(trim($_POST['password'])=="")) {
+ 				unset($_POST['password']);
+				}
+				else {
+		    		$valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+			}
+*/
+		# Passed
+		if($error==false) {
+		// echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+			
+		// Enter into DB
+        
+        // Add additional data
+    	$valid_fields['modified'] = Time::now();  
+    	
+    	// Encrypt the password with salt
+    	$valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	
+    	// Update database straight from the $_POST array, similar to insert in sign-up
+		// And the additional parameters are the WHERE clause 
+		// to make sure the correct user is updated
+		DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
+
+    	// Code here to redirect them somewhere else
+    				
+		}	
+		else {
+    	// Send them to the ... page
+    	#Router::redirect('/users/profile');			
+    	#echo $this->template;
+		}
+
+    }
+    
 
 	/*-------------------------------------------------------------------------------------------------
 	Demonstrating 
@@ -132,7 +195,8 @@ class practice_controller extends base_controller {
 	# Initiate error
 	$this->template->content->error = '<br>';
 	
-	# If we have no post data (i.e. the form was not yet submitted, just display the View with the signup form and be done
+	# If we have no post data (i.e. the form was not yet submitted, 
+	# just display the View with the signup form and be done
 	if(!$_POST) {
 		echo $this->template;
 		return;
@@ -197,6 +261,7 @@ class practice_controller extends base_controller {
     	$imgObj = new Image('images/placeholder.png');
        	$imgObj->resize(200, 200);
     	$imgObj->display();
+    	
   	}
 
 	

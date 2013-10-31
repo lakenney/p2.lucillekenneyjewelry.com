@@ -12,8 +12,9 @@ class posts_controller extends base_controller {
     } 
     
     /*-------------------------------------------------------------------------------------------------
-	INDEX ... displays Add posts and Followed users.
+	INDEX ... displays Add posts and Followed users on the index page.
 	-------------------------------------------------------------------------------------------------*/
+    
     public function index() {
 
     	// Set up the View
@@ -26,8 +27,8 @@ class posts_controller extends base_controller {
         $this->template->title   = "New Post and Followed Users";
         $this->template->body_id = 'add'; 
         
-    	
-    	/* This is the entire steam of posts
+    	/**
+    	This is the entire steam of posts
     	// Build the query
     	$q = "SELECT 
             	posts .* , 
@@ -39,7 +40,6 @@ class posts_controller extends base_controller {
         */
         
         // Build the follow query
-        
         $q = 'SELECT 
             posts.content,
             posts.created,
@@ -71,8 +71,8 @@ class posts_controller extends base_controller {
 
     public function add() {
     
-       	// Setup view
-        #$this->template->content = View::instance('v_posts_add');
+       	// Setup view and passed to v_posts_index
+        $this->template->content = View::instance('v_posts_add');
         #$this->template->title   = "New Post";
         #$this->template->body_id = 'add'; 
         
@@ -107,10 +107,10 @@ class posts_controller extends base_controller {
  		DB::instance(DB_NAME)->insert('posts',$_POST);
  		
 		// Quick and dirty feedback
-        echo "Your post has been added. <a href='/posts/add'>Add another</a>";
+        #echo "Your post has been added. <a href='/posts/add'>Add another</a>";
         		
 		// Where do I want to redirect them
-		#Router::redirect('/posts/...);
+		Router::redirect('/posts/add');
     }
     
     /*-------------------------------------------------------------------------------------------------

@@ -138,12 +138,23 @@ class users_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 
     public function edit() {
+    
+        // If user is blank, they're not logged in; redirect them to the login page
+    	if(!$this->user) {
+        	#Router::redirect('/users/edit')
+        	die('You must signup or log in before you can edit your profile. <a href="/">Home</a>');
+    	}
         
         # Setup view
         $this->template->content = View::instance('v_users_edit');
     	$this->template->content->unique = true;
         $this->template->title   = "Edit Profile";
         #$this->template->body_id = 'edit';
+        
+		// View if unique email error out
+    	$this->template->content->error = true;
+    	$this->template->content->unique = $unique;
+
 		
 		// Render template
 		echo $this->template;
@@ -153,20 +164,44 @@ class users_controller extends base_controller {
     
     public function p_edit() {
     
-    	// Set error at default state
-    	$error = false;
 
 		if(!$_POST) {
 			Router::redirect('/users/edit');
 			return;
 		}
-		# Otherwise...
+		// Otherwise...
 
 		// Modify the $_POST array so it's ready to be inserted 
         // in the database (drop empty fields) 
 		// Create an array ($valid_fields) to drop out empty fields and replace the $_POST
-		$valid_fields = Array();
 		
+		$valid_fields = Array();
+			
+			if((trim($_POST['password'])=="")) {
+ 				unset($_POST['password']);
+				}
+				else {
+		    		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+			}
+/***/	
+		// Check for unique email
+		
+		// Compare what user is entering with everything in the database
+		// or use the unique helper function
+		
+		// If the users email is !unique
+		// Send them an error
+		// Pass data to the 'edit' view above
+		
+/*    	} else {
+
+        	// Send them back to the edit page
+        	// Update failed: This email is in use.
+        	Router::redirect("/users/edit/error");
+    	}
+*/		
+
+
 		// Loop through the POST data
 		foreach($_POST as $field_name => $value) {
                 
@@ -177,33 +212,20 @@ class users_controller extends base_controller {
  		}
 		#var_dump($valid_fields);
 		#var_dump($_POST);
-
-		# Passed
-		if($error==false) {
-		// echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
-			
-		// Enter into DB
-        
-        // Add additional data
+					        
+        // Add additional data to the database
     	$valid_fields['modified'] = Time::now();  
     	
     	// Encrypt the password with salt
-    	$valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+    	# $valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
     	
-    	// Update database straight from the $_POST array, similar to insert in sign-up
-		// And the additional parameters are the WHERE clause 
-		// to make sure the correct user is updated
-		DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
+    	// Update database straight from the $_POST/$valid_fields array, similar to insert in sign-up
+		echo DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
 
     	// Code here to redirect them somewhere else
-    				
-		}	
-		else {
-    	// Send them to the ... page
-    	#Router::redirect('/users/profile');			
-    	#echo $this->template;
-		}
+    	Router::redirect('/posts/add');
 
+    				
     }
     
 	/*-------------------------------------------------------------------------------------------------
@@ -282,7 +304,7 @@ class users_controller extends base_controller {
 
         	// Send them to the main page - or whever you want them to go
         	// This is the index page ... maybe send them to posts.php
-        	Router::redirect("/posts/add");
+        	Router::redirect("/posts");
         	
         	#echo '<pre>';
 			#print_r($this->user);
@@ -331,9 +353,6 @@ class users_controller extends base_controller {
     
     	// Don't have to do this because it's already in the base_controller
     	#$template = View::instance('_v_template');
-    	
-    	$this->template->content = View::instance('v_users_edit');
-
     	
     	// If user is blank, they're not logged in; redirect them to the login page
     	if(!$this->user) {
