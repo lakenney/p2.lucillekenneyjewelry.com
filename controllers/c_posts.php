@@ -62,7 +62,6 @@ class posts_controller extends base_controller {
 
     	// Render the View
     	echo $this->template;
-
 	}
 	
     /*-------------------------------------------------------------------------------------------------
@@ -211,9 +210,23 @@ class posts_controller extends base_controller {
 	
 	}
 	
-	public function p_delete () {
+	public function p_delete ($post_id) {
 	
 		// Query the database to get posts created by this user	
+		// Build the delete query similar to follow query
+        $q = 'SELECT 
+            posts.content,
+            posts.created,
+            posts.user_id AS post_user_id,
+            users_users.user_id AS follower_id,
+            users.first_name,
+            users.last_name
+        FROM posts
+        INNER JOIN users_users 
+            ON posts.user_id = users_users.user_id_followed
+        INNER JOIN users 
+            ON posts.user_id = users.user_id
+        WHERE users_users.user_id = '.$this->user->user_id;
 		
 		// Pass $_POSTS array to the View
 		#$this->template-> ... -> ... = $posts;

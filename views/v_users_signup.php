@@ -23,7 +23,6 @@
     Password<br>
     <input type='password' name='password'>
     <br><br>
-    
 
     <?php if(isset($error)): ?>
         <div class='error'>

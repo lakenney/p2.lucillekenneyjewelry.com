@@ -54,7 +54,7 @@
 		<ul>
         	<li id="navindex_index"><a href='/'>Home</a></li>
         	<li id="navproducts"><a href='/products'>Products</a></li>
-        	<li id="navcontact"><a href='/contact'>Contact</a></li>
+        	<li id="navcontact"><a href='/contacts'>Contact</a></li>
         </ul>
     </nav><!-- end primary_nav-->
     

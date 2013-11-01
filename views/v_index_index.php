@@ -17,10 +17,7 @@
 	My plus one is edit profile.
 </p>
 
-<!-- <p>
-	Hello World! You have successfully spawned a new application.
-</p>
-
+<!-- Note to myself:
 <p>
 	This message is being triggered via the c_index.php controller, within the index() method.
 </p>
