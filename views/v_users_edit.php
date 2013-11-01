@@ -20,9 +20,9 @@
                 <input type='text' name='email' value='<?=$user->email?>'>    
             	<br><br>
     
-            <?php if($unique == false): ?>
+            <?php if(isset($error)): ?>
                 <div class='error'>
-                    Update failed. This email is taken.<br>
+                    This email is taken.<br>
                     Use this field only if you are changing your email.
                 </div>
                 <br>

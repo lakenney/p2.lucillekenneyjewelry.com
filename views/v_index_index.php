@@ -1,9 +1,8 @@
-<h1>Hello <?php if($user) echo $user->first_name.', '; ?></h1>
-
+<h2>Hello <?php if($user) echo $user->first_name.', '; ?></h2>
 <br> 
 
-<h1>Welcome to <?=APP_NAME?> <h1>
 <p>
+	Welcome to <?=APP_NAME?>
 	where jewelry designers connect to talk about various mediums and tools used 
 	in jewelry design. This forum is for anyone who enjoys sharing information on new techniques 
 	in precious metal clay (PMC), favorite instructors, upcoming events, and vendor information. 

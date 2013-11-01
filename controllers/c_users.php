@@ -7,6 +7,8 @@ class users_controller extends base_controller {
     } 
 
     public function index() {
+    
+    
         
     echo "This is the index page";
     
@@ -84,14 +86,14 @@ class users_controller extends base_controller {
     	
     	if(!$unique || !$this->areFieldsFull()) {
     	
-    	// Setup view
-        $this->template->content = View::instance('v_users_signup');
-        #$this->template->title   = "Signup";
-        #$this->template->body_id = 'signup';
+    		// Setup view
+        	$this->template->content = View::instance('v_users_signup');
+        	#$this->template->title   = "Signup";
+        	#$this->template->body_id = 'signup';
 
-    	// Pass data to the view
-    	$this->template->content->error = true;
-    	$this->template->content->unique = $unique;
+    		// Pass data to the view
+    		$this->template->content->error = true;
+    		$this->template->content->unique = $unique;
     	
     	// Render template
         echo $this->template;
@@ -147,14 +149,13 @@ class users_controller extends base_controller {
         
         # Setup view
         $this->template->content = View::instance('v_users_edit');
+        $this->template->content->error = Null;
     	$this->template->content->unique = true;
         $this->template->title   = "Edit Profile";
         #$this->template->body_id = 'edit';
         
 		// View if unique email error out
-    	$this->template->content->error = true;
-    	$this->template->content->unique = $unique;
-
+		    	
 		
 		// Render template
 		echo $this->template;
@@ -199,32 +200,64 @@ class users_controller extends base_controller {
         	// Update failed: This email is in use.
         	Router::redirect("/users/edit/error");
     	}
-*/		
-
-
+    	
+*/		 
+		
+		// Using Helper function to check for duplicate emails
+    	$unique = $this->unique_email();
+    	
+		
+//&& $field_name == $_POST[email]
+		
 		// Loop through the POST data
 		foreach($_POST as $field_name => $value) {
                 
-        	if(!(trim($value)=="")) {
-        		$valid_fields[$field_name] = $value;
+        	if(!(trim($value)=="" )) {
+        	
+	        	$valid_fields[$field_name] = $value;
+	        	
         	#echo $field_name."<br/>";
         	}
+        	
  		}
-		#var_dump($valid_fields);
-		#var_dump($_POST);
-					        
+ 		
         // Add additional data to the database
     	$valid_fields['modified'] = Time::now();  
+		
+		// Is email changing
+		if($valid_fields['email'] == $this->user->email) {
+			// if email didn't change
+			$valid_email = true;
+		} else {
+			// if email did change
+			if($this->unique_email()) {
+				$valid_email = true;
+			} else {
+				$valid_email = false;
+			}
+		}
+		
+		if($valid_email == true) {
+		
+    		// Encrypt the password with salt
+    		# $valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
     	
-    	// Encrypt the password with salt
-    	# $valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-    	
-    	// Update database straight from the $_POST/$valid_fields array, similar to insert in sign-up
-		echo DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
+    		// Update database straight from the $_POST/$valid_fields array, similar to insert in sign-up
+			echo DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
 
-    	// Code here to redirect them somewhere else
-    	Router::redirect('/posts/add');
+    		// Code here to redirect them somewhere else
+    		Router::redirect('/posts/add');
+		} else {
+		
+			// Setup view
+        	$this->template->content = View::instance('v_users_edit');
+        	#$this->template->title   = "Signup";
+        	#$this->template->body_id = 'signup';
 
+    		// Pass data to the view
+    		$this->template->content->error = true;
+    		echo $this->template;		
+		}
     				
     }
     
