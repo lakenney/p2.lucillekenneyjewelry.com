@@ -66,7 +66,7 @@ class posts_controller extends base_controller {
 	}
 	
     /*-------------------------------------------------------------------------------------------------
-	ADD a post
+	ADD a post redirected to index view
 	-------------------------------------------------------------------------------------------------*/
 
     public function add() {
@@ -114,7 +114,7 @@ class posts_controller extends base_controller {
     }
     
     /*-------------------------------------------------------------------------------------------------
-	USERS a setting for which users are seen
+	USERS a setting for which users are seen and can be followed or unfollowed
 	-------------------------------------------------------------------------------------------------*/
 	public function users() {
 
@@ -161,8 +161,9 @@ class posts_controller extends base_controller {
 	public function follow($user_id_followed) {
 	
 		// How do I automatically follow myself?
-	
-    	$this->template->body_id = 'follow'; 
+		
+		// Set the body_id for Highlightnavigation.js
+    	#$this->template->body_id = 'follow'; 
 
     	// Prepare the data array to be inserted
     	$data = Array(
@@ -192,6 +193,38 @@ class posts_controller extends base_controller {
     	// Send them back
     	Router::redirect("/posts/users");
 
+	}
+	
+	/*-------------------------------------------------------------------------------------------------
+	DELETE posts
+	-------------------------------------------------------------------------------------------------*/
+
+	public function delete () {
+	
+		// Set up View
+		$this->template = View::instance('v_posts_delete');
+		
+		// Pass data to the View
+		
+		// Render View
+		echo $this->template;
+	
+	}
+	
+	public function p_delete () {
+	
+		// Query the database to get posts created by this user	
+		
+		// Pass $_POSTS array to the View
+		#$this->template-> ... -> ... = $posts;
+		
+		// Delete this post 
+		$_POST['user_id']  = $this->user->user_id;
+		$_POST['created']  = Time::now();
+		$_POST['modified'] = Time::now();
+	
+		#print_r($_POST);
+	
 	}
 
     /*-------------------------------------------------------------------------------------------------

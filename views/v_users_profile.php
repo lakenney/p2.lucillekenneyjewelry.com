@@ -1,7 +1,12 @@
-<br><br>
+<article>
+<!-- This is the Profile page -->
+<h1>Hello <?=$user->first_name?></h1>
 
-<h1>This is the profile of <?=$user->first_name?></h1>
-
+	<!-- Including more content from the Edit view -->
+	<div>
+        <?=$moreContent;?>    
+    </div>
+</article>
 
 <!-- Edit your profile -->
 <!--
@@ -9,6 +14,8 @@
     	<?=Content;?>    
 	</div>
 -->
+
+
 <br><br>
 
 

@@ -1,8 +1,9 @@
+<!-- This is already covered in the Profile page
 	<h2>Hello <?=$user->first_name?></h2>
-      
-    <p>Here's where you can edit your profile! </p>
+-->
+    <h2>Here's where you can edit your profile! </h2>
          
-    <h2>Edit details</h2>
+    <p>Edit details</p>
     
         <form method='POST' action='/users/p_edit'>
 

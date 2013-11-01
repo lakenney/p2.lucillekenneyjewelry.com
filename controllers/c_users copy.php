@@ -8,6 +8,7 @@ class users_controller extends base_controller {
 
     public function index() {
     
+    
         
     echo "This is the index page";
     
@@ -153,6 +154,9 @@ class users_controller extends base_controller {
         $this->template->title   = "Edit Profile";
         #$this->template->body_id = 'edit';
         
+		// View if unique email error out
+		    	
+		
 		// Render template
 		echo $this->template;
         
@@ -161,30 +165,53 @@ class users_controller extends base_controller {
     
     public function p_edit() {
     
+
 		if(!$_POST) {
 			Router::redirect('/users/edit');
 			return;
 		}
+		// Otherwise...
 
+		// Modify the $_POST array so it's ready to be inserted 
+        // in the database (drop empty fields) 
 		// Create an array ($valid_fields) to drop out empty fields and replace the $_POST
+		
 		$valid_fields = Array();
 			
-			// If the password is empty drop it
 			if((trim($_POST['password'])=="")) {
  				unset($_POST['password']);
 				}
 				else {
-					// Otherwise salt it
 		    		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 			}
-	
+/***/	
+		// Check for unique email
+		
+		// Compare what user is entering with everything in the database
+		// or use the unique helper function
+		
+		// If the users email is !unique
+		// Send them an error
+		// Pass data to the 'edit' view above
+		
+/*    	} else {
+
+        	// Send them back to the edit page
+        	// Update failed: This email is in use.
+        	Router::redirect("/users/edit/error");
+    	}
+    	
+*/		 
+		
 		// Using Helper function to check for duplicate emails
     	$unique = $this->unique_email();
-    			
+    	
+		
+//&& $field_name == $_POST[email]
+		
 		// Loop through the POST data
 		foreach($_POST as $field_name => $value) {
                 
-			// Trim out the empty fields
         	if(!(trim($value)=="")) {
         	
 	        	$valid_fields[$field_name] = $value;
