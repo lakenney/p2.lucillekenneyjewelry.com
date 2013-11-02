@@ -152,7 +152,6 @@ class posts_controller extends base_controller {
     	echo $this->template;
 	}
 
-
     /*-------------------------------------------------------------------------------------------------
 	FOLLOW
 	-------------------------------------------------------------------------------------------------*/
@@ -210,34 +209,37 @@ class posts_controller extends base_controller {
 	
 	}
 	
-	public function p_delete ($post_id) {
+	/*-------------------------------------------------------------------------------------------------
+	Purpose: Delete row(s)
+	Sanitizes: No
+	Params:
+		$table String
+		$where_condition String
+	Returns: INT - 1 if it found something to delete
 	
-		// Query the database to get posts created by this user	
-		// Build the delete query similar to follow query
-        $q = 'SELECT 
-            posts.content,
-            posts.created,
-            posts.user_id AS post_user_id,
-            users_users.user_id AS follower_id,
-            users.first_name,
-            users.last_name
-        FROM posts
-        INNER JOIN users_users 
-            ON posts.user_id = users_users.user_id_followed
-        INNER JOIN users 
-            ON posts.user_id = users.user_id
-        WHERE users_users.user_id = '.$this->user->user_id;
+	Ex:
+	DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
+	-------------------------------------------------------------------------------------------------*/
+	public function p_delete($table, $where_condition) {
+
+		$sql = 'DELETE FROM '.$table.' '.$where_condition; 
 		
-		// Pass $_POSTS array to the View
-		#$this->template-> ... -> ... = $posts;
+		DB::instance(DB_NAME)->delete('posts', "WHERE post_id = ".$_POST['post_id']);
+		return $this->query($sql);
 		
-		// Delete this post 
-		$_POST['user_id']  = $this->user->user_id;
-		$_POST['created']  = Time::now();
-		$_POST['modified'] = Time::now();
-	
-		#print_r($_POST);
-	
+		// Delete this connection
+    	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
+    	DB::instance(DB_NAME)->delete('users_users', $where_condition);
+
+		
+		# Pass $posts array to the view
+		$this->template->content->posts = $posts;
+
+        // Dump out the results of this query to see what the form submitted
+        echo '<pre>';
+		print_r($sql);
+        echo '</pre>';
+		
 	}
 
     /*-------------------------------------------------------------------------------------------------
