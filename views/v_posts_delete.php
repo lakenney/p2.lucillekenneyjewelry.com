@@ -1,24 +1,7 @@
 <!-- Delete a users post -->
 
-			
+<h2>Are you sure you want to delete this post?</h2>
 
-
-<?php foreach($posts as $post): ?>
-
-	<!--print_r($posts); -->
-
-	<?=$post['content']?>
-	
-	<form action="/posts/p_delete/<?=$post['post_id']?>" method="post">
-		<input type="submit" name="delete" value="X"/>
-	</form>
-	
-	<?=Time::display($post['created'],'Y-m-d G:i')?>
-	<?=$post['first_name']?>
-	<?=$post['content']?>
-		
-<?php endforeach; ?>
-
- 
- <!-- 	print_r($posts);
--->
+	<a href='/posts/p_delete/<?=$post['post_id']?>'>
+		<button type="button" class='button' id='buttonDelete'>Delete</button>
+	</a>

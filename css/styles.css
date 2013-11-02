@@ -245,10 +245,6 @@ a.to_nav:focus {
 	border-bottom: 10px solid #383838;*/
 }
 
-.error {
-	color:red;
-}
-
 /*nav for access to logout*/	
 #access_out {
 	position: absolute;
@@ -319,6 +315,18 @@ time {
 article {
 	background-color: #f2f2f2;
 }
+
+.error {
+	color:red;
+}
+
+button {
+
+}
+
+.button:hover {
+  background: #ccc;
+  text-decoration: none;}
 
 /*footer*/
 

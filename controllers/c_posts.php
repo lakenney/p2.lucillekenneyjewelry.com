@@ -144,7 +144,7 @@ class posts_controller extends base_controller {
 
 		// print_r($conections);
 	
-    	// Pass data (users and connections) to the view
+    	// Pass data, (variables users and connections) to the view
     	$this->template->content->users       = $users;
     	$this->template->content->connections = $connections;
 
@@ -186,7 +186,7 @@ class posts_controller extends base_controller {
 
     	// Delete this connection
     	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
-    	DB::instance(DB_NAME)->delete('users_users', $where_condition);
+    	DB::instance(DB_NAME)->sanitize->delete('users_users', $where_condition);
 
     	// Send them back
     	Router::redirect("/posts/users");
@@ -194,13 +194,14 @@ class posts_controller extends base_controller {
 	}
 	
 	/*-------------------------------------------------------------------------------------------------
-	DELETE posts
+	DELETE views for delete post method
 	-------------------------------------------------------------------------------------------------*/
 
 	public function delete () {
 	
 		// Set up View
 		$this->template = View::instance('v_posts_delete');
+        $this->template->content = View::instance('v_posts_delete');
 		
 		// Pass data to the View
 		
@@ -208,7 +209,6 @@ class posts_controller extends base_controller {
 		echo $this->template;
 	
 	}
-	
 	/*-------------------------------------------------------------------------------------------------
 	Purpose: Delete row(s)
 	Sanitizes: No
@@ -220,26 +220,22 @@ class posts_controller extends base_controller {
 	Ex:
 	DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
 	-------------------------------------------------------------------------------------------------*/
-	public function p_delete($table, $where_condition) {
-
-		$sql = 'DELETE FROM '.$table.' '.$where_condition; 
-		
-		DB::instance(DB_NAME)->delete('posts', "WHERE post_id = ".$_POST['post_id']);
-		return $this->query($sql);
+	public function p_delete($post_id) {
 		
 		// Delete this connection
-    	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
+    	$where_condition = 'WHERE user_id = '.$post_id;
     	DB::instance(DB_NAME)->delete('users_users', $where_condition);
-
 		
-		# Pass $posts array to the view
-		$this->template->content->posts = $posts;
+		# Pass data (variable $where_condition) to the view
+		$this->template->content->posts = $where_condition;
 
-        // Dump out the results of this query to see what the form submitted
+        /*// Dump out the results of this query to see what the form submitted
         echo '<pre>';
 		print_r($sql);
-        echo '</pre>';
-		
+        echo '</pre>';*/
+        
+        // Send them back to the main page 'Add and Follow Posts'
+		Router::redirect("/posts/add");	
 	}
 
     /*-------------------------------------------------------------------------------------------------
