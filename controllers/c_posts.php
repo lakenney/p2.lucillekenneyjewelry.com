@@ -38,7 +38,8 @@ class posts_controller extends base_controller {
         	INNER JOIN users 
             	ON posts.user_id = users.user_id";
         */
-        
+		$this->template->content->user_id = DB::instance(DB_NAME)->sanitize($this->template->content->user_id);
+        		
         // Build the follow query
         $q = 'SELECT 
             posts.content,
@@ -46,8 +47,7 @@ class posts_controller extends base_controller {
             posts.user_id AS post_user_id,
             users_users.user_id AS follower_id,
             users.first_name,
-            users.last_name,
-			posts.post_id
+            users.last_name
         FROM posts
         INNER JOIN users_users 
             ON posts.user_id = users_users.user_id_followed
@@ -55,6 +55,10 @@ class posts_controller extends base_controller {
             ON posts.user_id = users.user_id
         WHERE users_users.user_id = '.$this->user->user_id;
 
+		#echo "<pre>";
+		#print_r($q);
+		#echo "</pre>";
+		
     	// Run the query
     	$posts = DB::instance(DB_NAME)->select_rows($q);
 
@@ -89,7 +93,7 @@ class posts_controller extends base_controller {
     public function p_add() {
     
     	#echo "<pre>";
-    	#print_r($_POST();
+    	#print_r($_POST);
     	#echo "</pre>";
     	
     	// Check for empty post
@@ -202,7 +206,7 @@ class posts_controller extends base_controller {
 	
 		// Set up View
 		$this->template = View::instance('v_posts_delete');
-        $this->template->content = View::instance('v_posts_delete');
+        #$this->template->content = View::instance('v_posts_delete');
 		
 		// Pass data to the View
 		

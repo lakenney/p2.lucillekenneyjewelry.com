@@ -187,8 +187,8 @@ class users_controller extends base_controller {
 			// Trim out the empty fields
         	if(!(trim($value)=="")) {
         	
-	        	$valid_fields[$field_name] = $value;
-	        	
+	        #	$valid_fields[$field_name] = stripslashes(htmlspecialchars($value));
+				$valid_fields[$field_name] = $value;
         	#echo $field_name."<br/>";
         	}
         	
