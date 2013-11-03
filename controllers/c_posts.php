@@ -38,27 +38,26 @@ class posts_controller extends base_controller {
         	INNER JOIN users 
             	ON posts.user_id = users.user_id";
         */
-		$this->template->content->user_id = DB::instance(DB_NAME)->sanitize($this->template->content->user_id);
-        		
+
         // Build the follow query
         $q = 'SELECT 
             posts.content,
             posts.created,
             posts.user_id AS post_user_id,
             users_users.user_id AS follower_id,
+			users.user_id,
             users.first_name,
-            users.last_name
+            users.last_name,
+            users.website,
+			posts.post_id
         FROM posts
         INNER JOIN users_users 
             ON posts.user_id = users_users.user_id_followed
         INNER JOIN users 
             ON posts.user_id = users.user_id
-        WHERE users_users.user_id = '.$this->user->user_id;
+        WHERE users_users.user_id = '.$this->user->user_id.'
+	ORDER BY posts.created DESC';
 
-		#echo "<pre>";
-		#print_r($q);
-		#echo "</pre>";
-		
     	// Run the query
     	$posts = DB::instance(DB_NAME)->select_rows($q);
 
@@ -114,7 +113,7 @@ class posts_controller extends base_controller {
         #echo "Your post has been added. <a href='/posts/add'>Add another</a>";
         		
 		// Where do I want to redirect them
-		Router::redirect('/posts/add');
+		Router::redirect('/posts');
     }
     
     /*-------------------------------------------------------------------------------------------------
@@ -206,7 +205,7 @@ class posts_controller extends base_controller {
 	
 		// Set up View
 		$this->template = View::instance('v_posts_delete');
-        #$this->template->content = View::instance('v_posts_delete');
+        $this->template->content = View::instance('v_posts_delete');
 		
 		// Pass data to the View
 		
@@ -238,7 +237,7 @@ class posts_controller extends base_controller {
 		#print_r($where_condition);
         
         // Send them back to the main page 'Add and Follow Posts'
-		Router::redirect("/posts/add");	
+		Router::redirect("/posts");	
 	}
 
     /*-------------------------------------------------------------------------------------------------

@@ -16,21 +16,23 @@
 		
 				<!-- Display posted content -->
 				<p><?=$post['content']?></p>
-			
+
+				<!-- Display website -->
+				<p><?=$post['website']?></p>
+
 				<p>
 					<!-- Display time of creation -->
 					<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
         				<?=Time::display($post['created'])?>
     				</time>
     			</p>
-    			
-    			<!-- Display delete button on user's posts -->
-    			<?php if($post['user_id'] == $user->user_id): ?>
-    				<a href='/posts/delete/<?=$post['post_id']?>'>
-    				<button type="button" class='button' id='buttonDelete'>Delete Post</button></a>
-    			<?php else: ?>
-    			
-    			<?php endif; ?>
+    			    			
+				<!-- Displays delete button on logged in user's posts -->
+				<?php if($post['user_id'] == $user->user_id): ?>
+					<a href='/posts/p_delete/<?=$post['post_id']?>'>
+					<button type="button" class='button' id='buttonDelete'>Delete Post</button></a>
+				<?php else: ?>
+				<?php endif; ?>
     			
 		</article>
 	<?php endforeach; ?>

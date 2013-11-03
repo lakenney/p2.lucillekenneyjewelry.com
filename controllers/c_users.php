@@ -219,7 +219,7 @@ class users_controller extends base_controller {
 			echo DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
 
     		// Code here to redirect them somewhere else
-    		Router::redirect('/posts/add');
+    		Router::redirect('/posts');
 		} else {
 		
 			// Setup view
