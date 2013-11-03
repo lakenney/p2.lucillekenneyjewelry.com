@@ -321,12 +321,20 @@ article {
 }
 
 button {
-
+	line-height: 10px;
+	color: #ffffff;
+	font-size: 12px;
+	background: #999999;
+	border: 0;
+	text-decoration: none;
+	margin-bottom: 50px;
+	margin-top: 5px;
 }
 
 .button:hover {
-  background: #ccc;
-  text-decoration: none;}
+  	background: #ccc;
+  	text-decoration: none;
+}
 
 /*footer*/
 

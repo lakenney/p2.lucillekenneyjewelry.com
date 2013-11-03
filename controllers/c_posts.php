@@ -46,7 +46,8 @@ class posts_controller extends base_controller {
             posts.user_id AS post_user_id,
             users_users.user_id AS follower_id,
             users.first_name,
-            users.last_name
+            users.last_name,
+			posts.post_id
         FROM posts
         INNER JOIN users_users 
             ON posts.user_id = users_users.user_id_followed
@@ -65,7 +66,7 @@ class posts_controller extends base_controller {
 	}
 	
     /*-------------------------------------------------------------------------------------------------
-	ADD a post redirected to index view
+	ADD a post viewed within index view
 	-------------------------------------------------------------------------------------------------*/
 
     public function add() {
@@ -186,7 +187,7 @@ class posts_controller extends base_controller {
 
     	// Delete this connection
     	$where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
-    	DB::instance(DB_NAME)->sanitize->delete('users_users', $where_condition);
+    	DB::instance(DB_NAME)->delete('users_users', $where_condition);
 
     	// Send them back
     	Router::redirect("/posts/users");
@@ -223,16 +224,14 @@ class posts_controller extends base_controller {
 	public function p_delete($post_id) {
 		
 		// Delete this connection
-    	$where_condition = 'WHERE user_id = '.$post_id;
-    	DB::instance(DB_NAME)->delete('users_users', $where_condition);
+    	$where_condition = 'WHERE post_id = '.$post_id;
+    	DB::instance(DB_NAME)->delete('posts', $where_condition);
 		
-		# Pass data (variable $where_condition) to the view
+		// Pass data (variable $where_condition) to the view
 		$this->template->content->posts = $where_condition;
 
-        /*// Dump out the results of this query to see what the form submitted
-        echo '<pre>';
-		print_r($sql);
-        echo '</pre>';*/
+        // Dump out the results of this query to see what the form submitted
+		#print_r($where_condition);
         
         // Send them back to the main page 'Add and Follow Posts'
 		Router::redirect("/posts/add");	

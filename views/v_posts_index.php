@@ -26,6 +26,8 @@
     			
     			<!-- Display delete button on user's posts -->
     			<?php if($post['user_id'] == $user->user_id): ?>
+    			
+    			<?php echo var_dump($post) ?>
     				<a href='/posts/delete/<?=$post['post_id']?>'>
     				<button type="button" class='button' id='buttonDelete'>Delete Post</button></a>
     			<?php else: ?>
