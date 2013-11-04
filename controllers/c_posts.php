@@ -202,39 +202,31 @@ class posts_controller extends base_controller {
 	DELETE views for delete post method
 	-------------------------------------------------------------------------------------------------*/
 
-	public function delete($post_id) {
-        
-        // Setup view
-        $this->template->content = View::instance('v_post_delete');
-        $this->template->title   = "Confirm Delete";
-        
+public function delete($post_id) {
+		
+		// setup view
+		$this->template->content = View::instance('v_posts_delete');
 		$this->template->content->post_id = $post_id;
-      
+		
 		// render view
-        echo $this->template;
-            
-    }  
+		echo $this->template;
+		
+	} 
 	
 	/*-------------------------------------------------------------------------------------------------
-	Purpose: Delete row(s)
-	Sanitizes: No
-	Params:
-		$table String
-		$where_condition String
-	Returns: INT - 1 if it found something to delete
-	
-	Ex:
+
 	DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
 	-------------------------------------------------------------------------------------------------*/
 	public function p_delete($post_id) {
-
+    
 		// delete this connection
 		$where_condition = 'WHERE post_id = '.$post_id;
-		                     
+		DB::instance(DB_NAME)->delete('posts', $where_condition);
+                
 		// send them back
 		Router::redirect("/posts");
-       
-    } 
+		
+	}
 
     /*-------------------------------------------------------------------------------------------------
 	Demonstrating Classes/Objects
