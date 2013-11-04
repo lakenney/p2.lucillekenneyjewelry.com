@@ -6,6 +6,7 @@
 	where jewelry designers connect to talk about various mediums and tools used 
 	in jewelry design. This forum is for anyone who enjoys sharing information on new techniques 
 	in precious metal clay (PMC), favorite instructors, upcoming events, and vendor information. 
+</p>
 <p>
 	After you fill in the signup form, you will be taken to the login page. Once logged in, you will be
 	able to view and follow or unfollow other users and add your own posts.

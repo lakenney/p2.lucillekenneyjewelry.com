@@ -1,11 +1,7 @@
-.error {
-	color:red;
-}
-
 a.to_nav:hover,
 a.to_nav:focus {
 	color: #1b7887;
-	background: #ccc;
+	background-color: #ccc;
 }
 	
 /*navigation*/	

@@ -179,7 +179,7 @@ a.to_nav:focus {
 	letter-spacing: 0.1em;
 	line-height: 2em;
 	height: 2em;
-	border-bottom: 1px solid ##d8d8d8;
+	border-bottom: 1px solid #d8d8d8;
 }
 
 #primary_nav li:last-child a {
@@ -199,14 +199,14 @@ a.to_nav:focus {
 #primary_nav ul li#iamhere a:hover { 	
 	color: #1c1c1c; 
 	background: #ccc;
-	/*background-color:transparent; 	
+	/*background:transparent; 	
 	border-bottom: 10px solid #383838;*/
 }
 
 /*nav for access to login*/	
 #access ul {
 	list-style: none;
-	background-color: none;
+	background: transparent;
 	padding: 5px 0;
 }
 
@@ -221,7 +221,7 @@ a.to_nav:focus {
 	letter-spacing: 0.1em;
 	line-height: 2em;
 	height: 2em;
-	border-bottom: 1px solid ##d8d8d8;
+	border-bottom: 1px solid #d8d8d8;
 }
 
 #access li:last-child a {
@@ -241,7 +241,7 @@ a.to_nav:focus {
 #access ul li#iamhere a:hover { 	
 	color: #1c1c1c; 
 	background: #ccc;
-	/*background-color:transparent; 	
+	/*background:transparent; 	
 	border-bottom: 10px solid #383838;*/
 }
 
@@ -250,7 +250,7 @@ a.to_nav:focus {
 	position: absolute;
 	top: 55px;
 	right: 10px;
-	background: none;
+	background: transparent;
 }
 
 #access_out ul {
@@ -275,7 +275,7 @@ a.to_nav:focus {
 #access_out li a {
 	display: block;
 	padding: 0 20px;
-	color: #red;
+	color: #4c4c4c;
 	text-decoration: none;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -313,11 +313,11 @@ time {
 }
 
 article {
-	background-color: #f2f2f2;
+	background: #f2f2f2;
 }
 
 .error {
-	color:red;
+	color:#FF0000;
 }
 
 button {
@@ -367,7 +367,7 @@ footer {
 		position: absolute;
 		top: 5px;
 		right: 10px;
-		background: none;
+		background: transparent;
 	}
 			
 	#primary_nav li {
@@ -393,7 +393,7 @@ footer {
 		position: absolute;
 		top: 63px;
 		right: 10px;
-		background: none;
+		background: transparent;
 	}
 	#access ul {
 		list-style: none;
@@ -421,7 +421,7 @@ footer {
 	#access li a {
 		display: block;
 		padding: 0 20px;
-		color: #red;
+		color: #4c4c4c;
 		text-decoration: none;
 		font-weight: bold;
 		text-transform: uppercase;

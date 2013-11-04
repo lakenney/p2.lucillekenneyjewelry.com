@@ -203,17 +203,17 @@ class posts_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 
 	public function delete($post_id) {
-        
-        // Setup view
-        $this->template->content = View::instance('v_post_delete');
-        $this->template->title   = "Confirm Delete";
-        
-		$this->template->content->post_id = $post_id;
-      
-		// render view
-        echo $this->template;
-            
-    }  
+	
+		// Set up View
+        $this->template->content = View::instance('v_posts_delete');
+		
+		// Pass data to the View
+		$this->template->content->post = $post_id;
+		
+		// Render View
+		#echo $this->template;
+		
+	}
 	
 	/*-------------------------------------------------------------------------------------------------
 	Purpose: Delete row(s)
@@ -226,15 +226,22 @@ class posts_controller extends base_controller {
 	Ex:
 	DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
 	-------------------------------------------------------------------------------------------------*/
-	public function p_delete($post_id) {
+	public function p_delete() {
+		
+		// Delete this connection
+    	$where_condition = 'WHERE post_id = '.$post_id;
+    	DB::instance(DB_NAME)->delete('posts', $where_condition);
+		
+		// Pass data (variable $where_condition) to the view
+		$this->template->content->posts = $where_condition;
 
-		// delete this connection
-		$where_condition = 'WHERE post_id = '.$post_id;
-		                     
-		// send them back
-		Router::redirect("/posts");
-       
-    } 
+        // Dump out the results of this query to see what the form submitted
+		#print_r($where_condition);
+        
+        // Send them back to the main page 'Add and Follow Posts'
+		Router::redirect("/posts");	
+		
+	}
 
     /*-------------------------------------------------------------------------------------------------
 	Demonstrating Classes/Objects

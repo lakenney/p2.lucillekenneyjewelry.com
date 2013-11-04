@@ -1,7 +1,7 @@
 <!-- Add an new post -->
 
 	<div>
-        <?=$moreContent;?>    
+        <?=$addPost;?>    
     </div>
              
 <article>
@@ -28,8 +28,9 @@
     			</p>
     			    			
 				<!-- Displays delete button on logged in user's posts -->
-				<?php if($post['user_id'] == $user->user_id): ?>
-					<a href='/posts/p_delete/<?=$post['post_id']?>'>
+				<?php 
+				if($post['user_id'] == $user->user_id): ?>
+					<a href='/posts/delete/<?=$post['post_id']?>'>
 					<button type="button" class='button' id='buttonDelete'>Delete Post</button></a>
 				<?php else: ?>
 				<?php endif; ?>
