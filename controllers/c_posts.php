@@ -22,10 +22,10 @@ class posts_controller extends base_controller {
     	// Another view
         $this->template->content->addPost = View::instance('v_posts_add');
     	
-    	#$this->template->title   = "Posts";
+    	#$this->template->title   	= "Posts";
     	#$this->template->body_id   = 'posts';
-        $this->template->title   = "New Post and Followed Users";
-        $this->template->body_id = 'add'; 
+        $this->template->title   	= "New Post and Followed Users";
+        $this->template->body_id 	= 'add'; 
         
     	/**
     	This is the entire steam of posts
@@ -56,7 +56,6 @@ class posts_controller extends base_controller {
         INNER JOIN users 
             ON posts.user_id = users.user_id
         WHERE users_users.user_id = '.$this->user->user_id.'
-            OR posts.user_id = '.$this->user->user_id.'
 		ORDER BY posts.created DESC';
 
     	// Run the query
@@ -202,10 +201,12 @@ class posts_controller extends base_controller {
 	DELETE views for delete post method
 	-------------------------------------------------------------------------------------------------*/
 
-public function delete($post_id) {
+	public function delete($post_id) {
 		
 		// setup view
 		$this->template->content = View::instance('v_posts_delete');
+		
+		// Pass data to the View
 		$this->template->content->post_id = $post_id;
 		
 		// render view
@@ -219,11 +220,11 @@ public function delete($post_id) {
 	-------------------------------------------------------------------------------------------------*/
 	public function p_delete($post_id) {
     
-		// delete this connection
+		// Delete this connection
 		$where_condition = 'WHERE post_id = '.$post_id;
 		DB::instance(DB_NAME)->delete('posts', $where_condition);
                 
-		// send them back
+		// Send them back to the main page 'Add and Follow Posts'
 		Router::redirect("/posts");
 		
 	}

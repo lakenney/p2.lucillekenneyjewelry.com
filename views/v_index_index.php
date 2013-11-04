@@ -12,7 +12,7 @@
 	able to view and follow or unfollow other users and add your own posts.
 </p>
 <p>
-	We at <?=APP_NAME?> hope you find this forum helpful and come back often to share your experiences.</p>
+	We at <?=APP_NAME?> hope you find this forum helpful and come back often to share your experiences.
 </p>
 <p>
 	My plus one is edit profile.

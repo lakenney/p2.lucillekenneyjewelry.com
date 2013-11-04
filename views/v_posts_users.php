@@ -7,7 +7,7 @@
     	<?=$user['first_name']?> <?=$user['last_name']?>
     	
 		<!-- Display website content -->
-		<p><?=$post['website']?></p>
+		<?=$user['website']?>		
 			
     	<!-- If there exists a connection with this user, show a unfollow link -->
     	<? if(isset($connections[$user['user_id']])): ?>
