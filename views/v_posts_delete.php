@@ -21,7 +21,7 @@
 -->
  <article>
 	<p>
-		Are you sure you want to delete this post? If not, click 
+		Are you sure you want to delete this post? 
 		
 		<a href="/posts">
 		<button type="button" id='confirmDelete'>No</button></a>

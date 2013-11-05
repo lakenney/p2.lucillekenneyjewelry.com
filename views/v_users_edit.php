@@ -2,9 +2,7 @@
 	<h2>Hello <?=$user->first_name?></h2>
 -->
     <h2>You can edit your profile here if you like. </h2>
-         
-    <p>Edit details</p>
-    
+             
         <form method='POST' action='/users/p_edit'>
 
             First Name<br>

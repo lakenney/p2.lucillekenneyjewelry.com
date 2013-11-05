@@ -20,10 +20,10 @@ class users_controller extends base_controller {
     public function signup() {
     
         # Setup view
-        $this->template->content = View::instance('v_users_signup');
-    	$this->template->content->unique = true;
-        $this->template->title   = "Sign Up";
-        $this->template->body_id = 'signup';
+        $this->template->content 			= View::instance('v_users_signup');
+    	$this->template->content->unique 	= true;
+        $this->template->title   			= "Sign Up";
+        $this->template->body_id 			= 'signup';
 
         # Render template
             echo $this->template;

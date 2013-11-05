@@ -16,15 +16,16 @@ class posts_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
     
     public function index() {
-
+    
     	// Set up 3 Views on this page, followed
-    	$this->template->content 					= View::instance('v_posts_index');
+    	$this->template->content 			= View::instance('v_posts_index');
     	// Another view, add posts
-        $this->template->content->addPost 			= View::instance('v_posts_add');
+        $this->template->content->addPost 	= View::instance('v_posts_add');
         // A third view, users
-        $this->template->content->addPost->addUsers = View::instance("v_posts_users");
+        $this->template->content->users 	= View::instance('v_posts_users');
 
-        
+		// Pass the $users array to the above view fragment
+		#$this->template->content->addUsers->users = $users;
     	
     	#$this->template->title   	= "Posts";
     	#$this->template->body_id   = 'posts';
@@ -42,6 +43,17 @@ class posts_controller extends base_controller {
         	INNER JOIN users 
             	ON posts.user_id = users.user_id";
         */
+        
+        // Build the query to get all the users
+    	$q = "SELECT *
+        	FROM users";
+
+    	// Execute the query to get all the users. 
+    	// Store the result array in the variable $users
+    	$users = DB::instance(DB_NAME)->select_rows($q);
+    	
+		// Pass the $users array to the above view fragment
+		$this->template->content->users = $users;
 
         // Build the follow query
         $q = 'SELECT 

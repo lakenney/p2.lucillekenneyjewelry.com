@@ -89,12 +89,9 @@ class practice_controller extends base_controller {
 
     }
     
-
 	/*-------------------------------------------------------------------------------------------------
 	Demonstrating 
 	-------------------------------------------------------------------------------------------------*/
-	
-
 	
 	public function profile_update() {
 	
@@ -226,9 +223,6 @@ class practice_controller extends base_controller {
 	}
  
 }
-
-
-
 	
 	/*-------------------------------------------------------------------------------------------------
 	Demonstrating Classes/Objects
@@ -236,7 +230,7 @@ class practice_controller extends base_controller {
 	public function display_image() {
 	
 		// Make sure code has access to my image class (temp solution)
-		#require(APP_PATH.'/libraries/Image.php');
+		require(APP_PATH.'/libraries/Image.php');
 	
 		#echo "You are looking at test1.";
 	
@@ -360,7 +354,6 @@ class practice_controller extends base_controller {
 		
 		# Or, assuming you know your user's timezone, pass it in as a variable
 		//echo "<br>User's TZ: ".Time::display($full_moon, '', $this->user->timezone);
-
 		
 	}		
 

@@ -6,8 +6,8 @@
     
 <!-- Add view for follow or unfollow users -->
 
-    <div>
-
+	<div>
+        <?=$users;?>    
     </div>
     
 <!-- Users being followed -->
@@ -17,8 +17,7 @@
 	<h2>Hey <?=$user->first_name?>, </h2>
 		<p>
 			Please go to the 'Users' tab to follow other members so you can see their posts.
-			It will be moved here eventually. 
-		<p>
+		</p>
 		<p>
 			Thank you,<br>
 			Management
@@ -61,6 +60,8 @@
     		</div><!--end talker_creds-->
 		</article>
 	<?php endforeach; ?>
+	
+	
 
 <!-- 
 	delete links that shows up on the user's posts
