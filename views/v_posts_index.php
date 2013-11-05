@@ -16,10 +16,8 @@
 	<!-- Displays a message to the logged in user -->
 	<h2>Hey <?=$user->first_name?>, </h2>
 		<p>
-			Eventually the Users List to Follow and Unfollow other members so you 
-			can see their posts, is currently under the 'Users' tab. It will be 
-			moved here eventually, but until then, please got to the 'Users' 
-			tab to follow other members.
+			Please go to the 'Users' tab to follow other members so you can see their posts.
+			It will be moved here eventually. 
 		<p>
 		<p>
 			Thank you,<br>
