@@ -17,15 +17,19 @@ class posts_controller extends base_controller {
     
     public function index() {
 
-    	// Set up the View
-    	$this->template->content = View::instance('v_posts_index');
-    	// Another view
-        $this->template->content->addPost = View::instance('v_posts_add');
+    	// Set up 3 Views on this page, followed
+    	$this->template->content 					= View::instance('v_posts_index');
+    	// Another view, add posts
+        $this->template->content->addPost 			= View::instance('v_posts_add');
+        // A third view, users
+        $this->template->content->addPost->addUsers = View::instance("v_posts_users");
+
+        
     	
     	#$this->template->title   	= "Posts";
     	#$this->template->body_id   = 'posts';
         $this->template->title   	= "New Post and Followed Users";
-        $this->template->body_id 	= 'add'; 
+        $this->template->body_id 	= 'talkfest'; 
         
     	/**
     	This is the entire steam of posts
@@ -69,15 +73,15 @@ class posts_controller extends base_controller {
 	}
 	
     /*-------------------------------------------------------------------------------------------------
-	ADD a post viewed within index view
+	ADD pass add view to index view
 	-------------------------------------------------------------------------------------------------*/
 
     public function add() {
     
        	// Setup view and passed to v_posts_index
-        $this->template->content = View::instance('v_posts_add');
-        #$this->template->title   = "New Post";
-        #$this->template->body_id = 'add'; 
+        $this->template->content 	= View::instance('v_posts_add');
+        #$this->template->title   	= "New Post";
+        #$this->template->body_id 	= 'add'; 
         
         // Another view
         #$this->template->content->moreContent = View::instance('v_posts_index'); 
@@ -123,8 +127,8 @@ class posts_controller extends base_controller {
 
     	// Set up the View
     	$this->template->content = View::instance("v_posts_users");
-    	$this->template->title   = "Users";
-    	$this->template->body_id = 'users'; 
+    	#$this->template->title   = "Users";
+    	#$this->template->body_id = 'users'; 
 
     	// Build the query to get all the users
     	$q = "SELECT *
@@ -154,6 +158,9 @@ class posts_controller extends base_controller {
 
     	// Render the view
     	echo $this->template;
+    	
+    	// Where do I want to redirect them
+		#Router::redirect('/posts');
 	}
 
     /*-------------------------------------------------------------------------------------------------

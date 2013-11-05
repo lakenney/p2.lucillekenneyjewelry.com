@@ -28,65 +28,71 @@
 
 	<div class="wrapper">
 	
-	<header>
+		<header>
 		
-		<h1 class="logo"><a href="">Talkfest</a></h1>
+			<h1 class="logo"><a href="">Talkfest</a></h1>
 			
-		<a class="to_nav" href="#access">Menu</a>
+			<a class="to_nav" href="#access">Menu</a>
 		
-	</header>
+		</header>
 
 	
-	<article>
+		<article>
 	
-	<?php if(isset($content)) echo $content; ?>
+		<?php if(isset($content)) echo $content; ?>
 	
-	</article>
+		</article>
 
-	<!-- 
-		I placed the nav bar here because I'm using a mobile first responsive template 
-		which gives more importance to content with the nav bar listed under content and
-		a 'menu' link at the top to bounce to the nav below 
-	-->
+		<!-- 
+			I placed the nav bar here because I'm using a mobile first responsive template 
+			which gives more importance to content with the nav bar listed under content and
+			a 'menu' link at the top to bounce to the nav below 
+		-->
 
-    <!-- Primary navigation accessible to all -->
-    <nav id='primary_nav'>
-		<ul>
-        	<li id="navindex_index"><a href='/'>Home</a></li>
-        	<li id="navproducts"><a href='/products'>Products</a></li>
-        	<li id="navcontact"><a href='/contacts'>Contact</a></li>
-        </ul>
-    </nav><!-- end primary_nav-->
+    	<!-- Primary navigation accessible to all -->
+    	<nav id='primary_nav'>
+			<ul>
+        		<li id="navindex_index"><a href='/'>Home</a></li>
+        		<li id="navproducts"><a href='/products'>Products</a></li>
+        		<li id="navcontact"><a href='/contacts'>Contact</a></li>
+        	</ul>
+    	</nav><!-- end primary_nav-->
     
-    <!-- Menu for users who are logged in -->
-    <?php if($user): ?>
-    	<nav id='access'>
-			<ul >
-            	<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
-            	<li id="navadd"><a href='/posts'>Add<a/></li>
-            	<li id="navusers"><a href='/posts/users'>Users<a/></li>
-            	<li id="navprofile"><a href='/users/profile'>Profile</a></li>
-            	<li id="navlogout"><a href='/users/logout'>Logout</a></li>
-				<li class="top"><a href="#home">Top</a></li>            	
-            </ul>
-    	</nav><!-- end primary_nav-->
+    	<!-- Menu for users who are logged in -->
+    	<?php if($user): ?>
+    		<nav id='access'>
+				<ul >
+            		<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
+            		<li id="navtalkfest"><a href='/posts'>Talkfest</a></li>
+            		<li id="navusers"><a href='/posts/users'>Users</a></li>
+            		<li id="navprofile"><a href='/users/profile'>Profile</a></li>
+            		<li id="navlogout"><a href='/users/logout'>Logout</a></li>
+					<li class="top"><a href="#home">Top</a></li>            	
+            	</ul>
+    		</nav><!-- end primary_nav-->
     	
-    <!-- Menu options for users who are not logged in -->
-    <?php else: ?>
-    	<nav id='access_out'>
-        	<ul>
-            	<li id="navsignup"><a href='/users/signup'>Sign up</a></li>
-            	<li id="navlogin"><a href='/users/login'>Log in</a></li>
-			</ul>
-    	</nav><!-- end primary_nav-->
+    	<!-- Menu options for users who are not logged in -->
+    	<?php else: ?>
+    		<nav id='access_out'>
+        		<ul>
+            		<li id="navsignup"><a href='/users/signup'>Sign up</a></li>
+            		<li id="navlogin"><a href='/users/login'>Log in</a></li>
+				</ul>
+    		</nav><!-- end primary_nav-->
 
-    <?php endif; ?>
+    	<?php endif; ?>
 
-    <br>
-
-	<article>
-	<!--<?php if(isset($client_files_body)) echo $client_files_body; ?>-->
-	</article>
+    	<br>
+    
+    	<footer>
+    
+    		<p span id='mySpan'>Lucille Kenney, Dynamic Website Development with Susan Buck at Harvard Extension &copy;2013</p>
+    
+    	</footer>
+		
 	</div><!--end wrapper-->
+	
+	<!--<?php if(isset($client_files_body)) echo $client_files_body; ?>-->
+	
 </body>
 </html>

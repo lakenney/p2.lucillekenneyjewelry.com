@@ -1,7 +1,7 @@
 <!-- This is already covered in the Profile page
 	<h2>Hello <?=$user->first_name?></h2>
 -->
-    <h2>Here's where you can edit your profile! </h2>
+    <h2>You can edit your profile here if you like. </h2>
          
     <p>Edit details</p>
     
@@ -34,7 +34,7 @@
                 <input type='password' name='password'>    
             	<br><br>
             
-                Do you have a website you'd like to share?<br>
+                Do you have a website you'd like to share? Please include http(s):// with your website name.<br>
                 <input type='text' name='website' value='<?php if(isset($_POST['website'])) echo $_POST['website']?>'>
             	<br><br>
 

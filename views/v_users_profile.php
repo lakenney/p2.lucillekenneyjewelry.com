@@ -1,6 +1,6 @@
 <article>
 <!-- This is the Profile page -->
-<h1>Hello <?=$user->first_name?></h1>
+<h1>Hello <?=$user->first_name?>,</h1>
 
 	<!-- Including more content from the Edit view -->
 	<div>
@@ -8,16 +8,7 @@
     </div>
 </article>
 
-<!-- Edit your profile -->
-<!--
-	<div>
-    	<?=Content;?>    
-	</div>
--->
-
-
 <br><br>
-
 
 <!-- 
 	<?php if(isset($user_name)): ?>

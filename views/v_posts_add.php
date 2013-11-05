@@ -1,3 +1,5 @@
+<!-- View to add a post -->
+
 <article>
 	<form method='POST' action='/posts/p_add'>
 
@@ -10,4 +12,3 @@
 	</form>
 </article>
 
-<!-- Posts that this user is following -->

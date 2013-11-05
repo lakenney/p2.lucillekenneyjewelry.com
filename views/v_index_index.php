@@ -14,9 +14,14 @@
 <p>
 	We at <?=APP_NAME?> hope you find this forum helpful and come back often to share your experiences.
 </p>
-<p>
-	My plus one is edit profile.
-</p>
+<h2>
+	Plus One
+</h2>
+	<ul>
+		<li>Edit Profile</li>
+		<li>Delete post</li>
+		<li>Add website</li>
+	</ul>
 
 <!-- Note to myself:
 <p>
