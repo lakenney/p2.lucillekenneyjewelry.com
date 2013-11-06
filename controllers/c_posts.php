@@ -23,7 +23,7 @@ class posts_controller extends base_controller {
     	// Another view, add posts
         $this->template->content->addPost 	= View::instance('v_posts_add');
         // A third view, users
-        $this->template->content->usersMembers 	= View::instance('v_posts_users');
+        #$this->template->content->users	= View::instance('v_posts_users');
 
 		// Pass the $users array to the above view fragment
 		#$this->template->content->addUsers->users = $users;
@@ -31,7 +31,7 @@ class posts_controller extends base_controller {
     	#$this->template->title   	= "Posts";
     	#$this->template->body_id   = 'posts';
         $this->template->title   	= "New Post and Followed Users";
-        $this->template->body_id 	= 'talkfest'; 
+        $this->template->body_id 	= 'talkers'; 
         
     	/**
     	This is the entire steam of posts
@@ -45,16 +45,18 @@ class posts_controller extends base_controller {
             	ON posts.user_id = users.user_id";
         */
         
+        // Block of code taken from public function users() 
+        // to pass to index view ... it didn't work.
         // Build the query to get all the users
-    	$q = "SELECT *
-        	FROM users";
+    	#$q = "SELECT *
+        #	FROM users";
 
     	// Execute the query to get all the users. 
     	// Store the result array in the variable $users
-    	$users = DB::instance(DB_NAME)->select_rows($q);
+    	#$users = DB::instance(DB_NAME)->select_rows($q);
 
 		// Pass the $users array to the above view fragment
-		$this->template->content->usersMembers = $users;
+		#$this->template->content->users = $users;
 		
         // Build the follow query
         $q = 'SELECT 
@@ -140,8 +142,8 @@ class posts_controller extends base_controller {
 
     	// Set up the View
     	$this->template->content = View::instance("v_posts_users");
-    	#$this->template->title   = "Users";
-    	#$this->template->body_id = 'users'; 
+    	$this->template->title   = "Users";
+    	$this->template->body_id = 'users'; 
 
     	// Build the query to get all the users
     	$q = "SELECT *

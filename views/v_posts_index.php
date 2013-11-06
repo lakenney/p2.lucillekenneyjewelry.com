@@ -6,9 +6,7 @@
     
 <!-- Add view for follow or unfollow users -->
 
-	<div>
-        <?=$usersMembers;?>    
-    </div>           
+        
      
 <!-- Users being followed -->
              
@@ -39,11 +37,11 @@
 						
 					</li>
 					<li>
-						<!-- Display time of creation ... not validating -->
-						<!--<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+						<!-- Display time of creation ... not validating but shows up on view -->
+						<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
         					<?=Time::display($post['created'])?>
-    					</time>-->
-    					<!-- Alain's code from Piazza validated -->
+    					</time>
+    					<!-- Alain's code from Piazza validated but doesn't show up-->
 						<time class="post_time" datetime="<?=Time::display($post['created'],'Y-m-d H:i')?>">   
 						</time> 			
 
@@ -51,9 +49,10 @@
 						<!-- Displays delete button on logged in user's posts -->
 						<?php 
 						if($post['user_id'] == $user->user_id): ?>
-							<a href='/posts/delete/<?=$post['post_id']?>'>
+							<a href='/posts/delete/<?=$post['post_id']?>' class='buttonLink cf'>
 								Delete Post
 							</a>
+							
 						<?php else: ?>
 						<?php endif; ?>
 					

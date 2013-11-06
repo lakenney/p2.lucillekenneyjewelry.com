@@ -15,18 +15,14 @@
     		
     		<!-- If there exists a connection with this user, show a unfollow link -->
     		<? if(isset($connections[$user['user_id']])): ?>
-
-        		<a href='/posts/unfollow/<?=$user['user_id']?>'>
+        		<a href='/posts/unfollow/<?=$user['user_id']?>' class='buttonLink'>
         			Unfollow
         		</a>
-			
     		<!-- Follow button -->
     		<? else: ?>
-    		
-        		<a href='/posts/follow/<?=$user['user_id']?>'>
+        		<a href='/posts/follow/<?=$user['user_id']?>' class='buttonLink'>
         			Follow
         		</a>
-        		
     		<? endif; ?>
     	<br><br>
 	</div>

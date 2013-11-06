@@ -425,6 +425,7 @@ input[type="submit"]:hover {
 	background: #999;
 }
 
+/* Removed because of </a> button error nesting
 #confirmDelete {
 	float: right;
 	margin-right: 50px;
@@ -440,9 +441,9 @@ a #buttonDelete {
 	float: right;
 	margin-right: 0px;
 }
-
+*/
 /* Follow Unfollow button */
-button a {
+/*button a {
 	float: none;
 	color: #fff;
 	text-decoration: none;
@@ -462,7 +463,7 @@ button {
 }
 
 /* Delete Post button*/
-button:hover  {
+/*button:hover  {
 	color: #fff;
   	background: #999;
   	text-decoration: none;
@@ -475,6 +476,38 @@ button:hover  {
 	margin-right: 50px;
 	margin-bottom: 20px;
 }
+*/
+
+.bRight {
+	display: block;
+}
+
+a.buttonLink {
+	line-height: 6px;
+	color: #fff;
+	font-size: 12px;
+	background: #ccc;
+	border: 0;
+	text-decoration: none;
+	padding: 3px;
+}
+
+.buttonLink:hover, .button-link:focus {
+	color: #fff;
+  	background: #999;
+  	text-decoration: none;
+	border:none;
+}
+
+.buttonLink:active {
+	color: #fff;
+  	background: #999;
+  	text-decoration: none;
+	border:none;
+}
+
+/* Disable text select */
+
 
 /*footer*/
 

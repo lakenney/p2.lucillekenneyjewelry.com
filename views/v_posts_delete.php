@@ -3,14 +3,9 @@
  <article>
 	<p>
 		Are you sure you want to delete this post? 
+			<a href="/posts" class="buttonLink">No</a>
 		
-		<button type="button" class="confirmDelete cf">
-			<a href="/posts">No</a>
-		</button>
-		
-		<button type="button" class="confirmDelete cf" id="confirmDelete">
-			<a href='/posts/p_delete/<?=$post_id?>'>Yes</a>
-		</button>
+			<a href='/posts/p_delete/<?=$post_id?>' class="buttonLink">Yes</a>
 	</p>
 </article>
 	
