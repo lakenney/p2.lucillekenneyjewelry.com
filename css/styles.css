@@ -347,7 +347,6 @@ a.to_nav:focus {
 
 }
 
-
 .followed {
 	background: #fff;
 }
@@ -373,7 +372,6 @@ a.to_nav:focus {
 }
 
 .talker ul {
-	float:left;
 	list-style-type:none;
 	margin:0;
 	padding:0;
@@ -556,13 +554,14 @@ footer {
 	}
 
 	.talker ul {
-		float:left;
+		/*float:left;*/
 		list-style-type:none;
 		margin:0;
 	}
 
 	.talker li {
 		display:inline;
+		padding-right: 20px;
 	}
 
 	.name {

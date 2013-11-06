@@ -1,7 +1,4 @@
 <!-- View to follow or unfollow all users -->
-<article>
-	<p>Members</p>
-</article>
 
 <? foreach($users as $user): ?>
 	<div class='users cf'>

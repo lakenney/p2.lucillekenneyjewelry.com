@@ -7,14 +7,14 @@
 			talking about. Follow yourself if you want to show your own posts. 
 		</p>
 </article>
-<!-- Add view for follow or unfollow users -->
 
-	<div class='members cf'>
+<!-- Add view for follow or unfollow users -->
+	<div class='members'>
         <?=$usersView;?>    
     </div>
-         
+   
+   
 <!-- Add view for new post -->
-
 	<div class='newPost'>
         <?=$addPost;?>    
     </div>
@@ -25,14 +25,13 @@
 	require tweaking in the css and may have something to do with the clear float. It might be
 	as simple as creating containers ...
  -->
-
 <!-- Users being followed -->
 <div class='talkers'>
 	<p>He said, she said!</p>
 
 	<!-- Users posts I'm following-->
 	<?php foreach($posts as $post): ?>
-		<article class='followed cf'>
+		<article class='followed'>
 		
 			<!-- Display posted content -->
 			<p class='content'><?=$post['content']?></p>
@@ -42,21 +41,16 @@
 					<li class='name'>
 						<?=$post['first_name']?> <?=$post['last_name']?>
 					</li>
-					<li class='website'>
-						<!-- Display website -->
+					<!--<li class='website'>
 						<a href='<?=$post['website']?>'><?=$post['website']?></a>
-						
-					</li>
+					</li>-->
 					<li>
 						<!-- Display time of creation ... not validating but shows up on view -->
 						<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-        					<?=Time::display($post['created'])?>
-    					</time>
-    					<!-- Alain's code from Piazza validated but doesn't show up-->
-						<time class="post_time" datetime="<?=Time::display($post['created'],'Y-m-d H:i')?>">   
-						</time> 			
-
-				</ul>	
+					 		<?=Time::display($post['created'])?>
+						</time>
+					</li>
+					<li>
 						<!-- Displays delete button on logged in user's posts -->
 						<?php 
 						if($post['user_id'] == $user->user_id): ?>
@@ -66,13 +60,14 @@
 							
 						<?php else: ?>
 						<?php endif; ?>
+					</li>
+				</ul>
 					
     		</div><!--end talker_creds-->
 		</article>
 	<?php endforeach; ?>
-</div>	
 	
-
+</div><!--end talkers_container-->
 <!-- 
 	delete links that shows up on the user's posts
  	take them to a single post view with the option to confirm delete a single post
