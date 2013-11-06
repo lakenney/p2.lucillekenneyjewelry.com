@@ -36,7 +36,6 @@
 		
 		</header>
 
-	
 		<article>
 	
 		<?php if(isset($content)) echo $content; ?>
@@ -46,7 +45,7 @@
 		<!-- 
 			I placed the nav bar here because I'm using a mobile first responsive template 
 			which gives more importance to content with the nav bar listed under content and
-			a 'menu' link at the top to bounce to the nav below 
+			a 'menu' link (for smaller browsers) at the top to bounce to the nav below 
 		-->
 
     	<!-- Primary navigation accessible to all -->
@@ -63,8 +62,8 @@
     		<nav id='access'>
 				<ul >
             		<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
-            		<li id="navtalkfest"><a href='/posts'>Talkfest</a></li>
-            		<li id="navusers"><a href='/posts/users'>Users</a></li>
+            		<li id="navtalkers"><a href='/posts'>Talkers</a></li>
+            		<li id="navusers"><a href='/posts/users'>Members</a></li>
             		<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             		<li id="navlogout"><a href='/users/logout'>Logout</a></li>
 					<li class="top"><a href="#home">Top</a></li>            	
@@ -86,7 +85,7 @@
     
     	<footer>
     
-    		<p span id='mySpan'>Lucille Kenney, Dynamic Website Development with Susan Buck at Harvard Extension &copy;2013</p>
+    		<p id='mySpan'>Lucille Kenney, Dynamic Website Development with Susan Buck at Harvard Extension &copy;2013</p>
     
     	</footer>
 		

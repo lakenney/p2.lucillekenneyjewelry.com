@@ -2,8 +2,6 @@
 
 <? foreach($users as $user): ?>
 	<div class='users cf'>
-		<div id='users'>
-		
 			<ul>
 				<li class='name'>
     				<!-- Print this user's name -->
@@ -18,15 +16,18 @@
     		<!-- If there exists a connection with this user, show a unfollow link -->
     		<? if(isset($connections[$user['user_id']])): ?>
 
-        	<a href='/posts/unfollow/<?=$user['user_id']?>'>
-        	<button type="button" class="button" id="users">Unfollow</a>
+        		<a href='/posts/unfollow/<?=$user['user_id']?>'>
+        			Unfollow
+        		</a>
 			
     		<!-- Follow button -->
     		<? else: ?>
+    		
         		<a href='/posts/follow/<?=$user['user_id']?>'>
-        		<button type="button" class="button" id='users'>Follow</a>
+        			Follow
+        		</a>
+        		
     		<? endif; ?>
     	<br><br>
-    	</div><!--end talker_creds-->
 	</div>
 <? endforeach; ?>

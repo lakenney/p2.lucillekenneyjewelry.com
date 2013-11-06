@@ -7,21 +7,18 @@
 <!-- Add view for follow or unfollow users -->
 
 	<div>
-        <?=$users;?>    
-    </div>
-    
+        <?=$usersMembers;?>    
+    </div>           
+     
 <!-- Users being followed -->
              
 <article>
 	<!-- Displays a message to the logged in user -->
 	<h2>Hey <?=$user->first_name?>, </h2>
 		<p>
-			Please go to the 'Users' tab to follow other members so you can see their posts.
+			Go to the 'Members' tab to follow other users so you can see their posts.
 		</p>
-		<p>
-			Thank you,<br>
-			Management
-		</p>
+
 </article>
 
 	<!-- Users posts I'm following-->
@@ -31,7 +28,7 @@
 			<!-- Display posted content -->
 			<p class='content'><?=$post['content']?></p>
 			
-			<div id='talker'>
+			<div class='talker'>
 				<ul>
 					<li class='name'>
 						<?=$post['first_name']?> <?=$post['last_name']?>
@@ -42,21 +39,24 @@
 						
 					</li>
 					<li>
-						<!-- Display time of creation -->
-						<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+						<!-- Display time of creation ... not validating -->
+						<!--<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
         					<?=Time::display($post['created'])?>
-    					</time>    			
-    				<li>
-    			</ul>	
+    					</time>-->
+    					<!-- Alain's code from Piazza validated -->
+						<time class="post_time" datetime="<?=Time::display($post['created'],'Y-m-d H:i')?>">   
+						</time> 			
+
+				</ul>	
 						<!-- Displays delete button on logged in user's posts -->
 						<?php 
 						if($post['user_id'] == $user->user_id): ?>
 							<a href='/posts/delete/<?=$post['post_id']?>'>
-							<button type="button" class='button cf' id='buttonDelete'>Delete Post</button></a>
+								Delete Post
+							</a>
 						<?php else: ?>
 						<?php endif; ?>
 					
-				
     		</div><!--end talker_creds-->
 		</article>
 	<?php endforeach; ?>

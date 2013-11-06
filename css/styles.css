@@ -358,18 +358,18 @@ a.to_nav:focus {
 	width: 60px;
 }
 
-#talker ul {
+.talker ul {
 	float:left;
 	list-style-type:none;
 	margin:0;
 	padding:0;
 }
 
-#talker li {
+.talker li {
 
 }
 
-#talker li a {
+.talker li a {
 	display:inline;
 	width:60px;
 }
@@ -452,13 +452,13 @@ button a {
 }
 
 button {
-  height: 22px;
-  margin: 0px 0 0 0px;
-border: 0;
-  overflow: hidden;
-  display: block;
-  text-align: center;
-  line-height: 10px;
+  	height: 22px;
+  	margin: 0px 0 0 0px;
+	border: 0;
+  	overflow: hidden;
+  	display: block;
+  	text-align: center;
+  	line-height: 10px;
 }
 
 /* Delete Post button*/
@@ -467,6 +467,13 @@ button:hover  {
   	background: #999;
   	text-decoration: none;
 	border:none;
+}
+
+.confirmDelete {
+	float:right;
+	margin-left: 20px;
+	margin-right: 50px;
+	margin-bottom: 20px;
 }
 
 /*footer*/
@@ -501,17 +508,17 @@ footer {
 		margin: auto;
 	}
 
-	#talker ul {
+	.talker ul {
 		float:left;
 		list-style-type:none;
 		margin:0;
 	}
 
-	#talker li {
+	.talker li {
 		display:inline;
 	}
 
-	.talker_name {
+	.name {
 		color:#49afcc;
 	}
 
