@@ -334,6 +334,20 @@ a.to_nav:focus {
 
 /* More css */
 
+.members {
+	float:left;
+}
+
+.newPost {
+	margin-left: 30%;
+}
+
+.talkers {
+	margin-left: 30%;
+
+}
+
+
 .followed {
 	background: #fff;
 }

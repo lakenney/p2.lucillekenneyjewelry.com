@@ -18,21 +18,23 @@ class posts_controller extends base_controller {
     public function index() {
     
 
-    	// Set up 3 Views on this page, followed
-    	$this->template->content 			= View::instance('v_posts_index');
-    	// Another view, add posts
-        $this->template->content->addPost 	= View::instance('v_posts_add');
-        // A third view, users
-        #$this->template->content->users	= View::instance('v_posts_users');
+    	// Set up 3 Views
+    		
+    		// Main template variables
+    		#$this->template->title   	= "Posts";
+    		#$this->template->body_id   = 'posts';
+        	$this->template->title   	= "New Post, Followed Users and Members";
+        	$this->template->body_id 	= 'talkers'; 
+    		
+    		// Primary view fragment
+    		$this->template->content 			= View::instance('v_posts_index');
+    		
+    		// Secondary view fragment to add a new post
+        	$this->template->content->addPost 	= View::instance('v_posts_add');
 
-		// Pass the $users array to the above view fragment
-		#$this->template->content->addUsers->users = $users;
-    	
-    	#$this->template->title   	= "Posts";
-    	#$this->template->body_id   = 'posts';
-        $this->template->title   	= "New Post and Followed Users";
-        $this->template->body_id 	= 'talkers'; 
-        
+			// Pass the $users array to the above view fragment
+			$this->template->content->usersView = View::instance('v_posts_users');        
+                
     	/**
     	This is the entire steam of posts
     	// Build the query
@@ -45,19 +47,6 @@ class posts_controller extends base_controller {
             	ON posts.user_id = users.user_id";
         */
         
-        // Block of code taken from public function users() 
-        // to pass to index view ... it didn't work.
-        // Build the query to get all the users
-    	#$q = "SELECT *
-        #	FROM users";
-
-    	// Execute the query to get all the users. 
-    	// Store the result array in the variable $users
-    	#$users = DB::instance(DB_NAME)->select_rows($q);
-
-		// Pass the $users array to the above view fragment
-		#$this->template->content->users = $users;
-		
         // Build the follow query
         $q = 'SELECT 
             posts.content,
@@ -82,6 +71,37 @@ class posts_controller extends base_controller {
 
     	// Pass data to the View
     	$this->template->content->posts = $posts;
+    	
+        // Build the query to get all the users
+    	$q = "SELECT *
+        	FROM users";
+
+    	// Execute the query to get all the users. 
+    	// Store the result array in the variable $users
+    	$users = DB::instance(DB_NAME)->select_rows($q);
+
+		// Pass the $users array to the above view fragment
+		$this->template->content->usersView->users  = $users;
+		
+		
+		    	// Build the query to figure out what connections does this user already have? 
+    	// I.e. who are they following
+    	$q = "SELECT * 
+        	FROM users_users
+        	WHERE user_id = ".$this->user->user_id;
+
+    	// Execute this query with the select_array method
+    	// select_array will return our results in an array and use the "users_id_followed" field as the index.
+    	// This will come in handy when we get to the view
+    	// Store our results (an array) in the variable $connections
+    	$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
+
+		// print_r($conections);
+	
+    	// Pass data, (variables users and connections) to the view
+    	#$this->template->content->users       = $users;
+    	$this->template->content->usersView->connections = $connections;
+
 
     	// Render the View
     	echo $this->template;
@@ -137,13 +157,14 @@ class posts_controller extends base_controller {
     
     /*-------------------------------------------------------------------------------------------------
 	USERS a setting for which users are seen and can be followed or unfollowed
+	This will be removed or made into a class.
 	-------------------------------------------------------------------------------------------------*/
 	public function users() {
 
     	// Set up the View
     	$this->template->content = View::instance("v_posts_users");
-    	$this->template->title   = "Users";
-    	$this->template->body_id = 'users'; 
+    	#$this->template->title   = "Users";
+    	#$this->template->body_id = 'users'; 
 
     	// Build the query to get all the users
     	$q = "SELECT *
@@ -172,7 +193,7 @@ class posts_controller extends base_controller {
     	$this->template->content->connections = $connections;
 
     	// Render the view
-    	echo $this->template;
+    	#echo $this->template;
     	
     	// Where do I want to redirect them
 		#Router::redirect('/posts');
@@ -200,7 +221,7 @@ class posts_controller extends base_controller {
     	DB::instance(DB_NAME)->insert('users_users', $data);
 
     	// Send them back
-    	Router::redirect("/posts/users");
+    	Router::redirect("/posts");
 
 	}
 	
@@ -215,7 +236,7 @@ class posts_controller extends base_controller {
     	DB::instance(DB_NAME)->delete('users_users', $where_condition);
 
     	// Send them back
-    	Router::redirect("/posts/users");
+    	Router::redirect("/posts");
 
 	}
 	

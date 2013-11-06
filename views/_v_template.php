@@ -63,7 +63,7 @@
 				<ul >
             		<!--<li id="navadd"><a href='/posts/add'>Add</a></li>-->
             		<li id="navtalkers"><a href='/posts'>Talkers</a></li>
-            		<li id="navusers"><a href='/posts/users'>Members</a></li>
+            		<!--<li id="navusers"><a href='/posts/users'>Members</a></li>-->
             		<li id="navprofile"><a href='/users/profile'>Profile</a></li>
             		<li id="navlogout"><a href='/users/logout'>Logout</a></li>
 					<li class="top"><a href="#home">Top</a></li>            	
