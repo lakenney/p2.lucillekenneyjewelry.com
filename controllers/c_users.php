@@ -216,7 +216,7 @@ class users_controller extends base_controller {
     		# $valid_fields['password'] = sha1(PASSWORD_SALT.$_POST['password']);
     	
     		// Update database straight from the $_POST/$valid_fields array, similar to insert in sign-up
-			echo DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
+			DB::instance(DB_NAME)->update('users', $valid_fields, "WHERE user_id =" .$this->user->user_id);
 
     		// Code here to redirect them somewhere else
     		Router::redirect('/posts');
