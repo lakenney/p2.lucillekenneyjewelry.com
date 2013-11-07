@@ -83,7 +83,7 @@
 
     	<br>
     
-    	<footer>
+    	<footer class='none'>
     
     		<p id='mySpan'>Lucille Kenney, Dynamic Website Development with Susan Buck at Harvard Extension &copy;2013</p>
     

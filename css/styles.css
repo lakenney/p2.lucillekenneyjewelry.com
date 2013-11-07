@@ -523,6 +523,9 @@ a.buttonLink {
 
 /*footer*/
 
+.clearfix {
+	clear:both;
+}
 footer {
 	font-family: 'PT Serif', serif;
 	color: #e4e4e4;
@@ -533,6 +536,7 @@ footer {
 	font-size: 14px;
 	background: #49afcc;
 	padding: 0 10px 10px 10px;
+	clear:both;
 }
 
 #mySpan {

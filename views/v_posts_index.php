@@ -66,7 +66,7 @@
     		</div><!--end talker_creds-->
 		</article>
 	<?php endforeach; ?>
-	
+	<div class='clearfix'> </div>
 </div><!--end talkers_container-->
 <!-- 
 	delete links that shows up on the user's posts
