@@ -18,7 +18,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- Navigation highlight css 'iamhere' -->
 	<script type="text/javascript" src="/js/highlightnavigation.js"> </script>
-	
+	<script type="text/javascript" src="/js/jquery.form.js"> </script>
+	<script type="text/javascript" src="/js/post_add.js"> </script>
+
 	<!-- Controller Specific JS/CSS -->
 	<!-- <?php if(isset($client_files_head)) echo $client_files_head; ?>-->
 	
